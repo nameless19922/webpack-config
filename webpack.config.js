@@ -13,6 +13,8 @@ const Nunjucks = require('./config/modules/nunjucks');
 
 const common = merge([
   {
+    context: consts.paths.app,
+
     stats: consts.stats.build,
 
     resolve: {
@@ -22,8 +24,8 @@ const common = merge([
     },
 
     entry: [
-      path.resolve(consts.paths.app, 'js', 'app.js'),
-      path.resolve(consts.paths.app, 'stylus', 'app.styl'),
+      './js/app.js',
+      './stylus/app.styl'
     ],
 
     output: {
@@ -33,7 +35,7 @@ const common = merge([
 
     plugins: [
       new HtmlWebpackPlugin({
-        template:  path.resolve(consts.paths.app, 'pages', 'index.njk'),
+        template:  './pages/index.njk',
         filename: './index.html',
         inject: false
       }),
