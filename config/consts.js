@@ -1,30 +1,28 @@
 const path = require('path');
 
-console.log(process.cwd());
+const stats = {
+  all: false,
+  assets: true,
+  modules: true,
+  maxModules: 0,
+  errors: true,
+  warnings: true,
+  moduleTrace: true,
+  errorDetails: true
+};
+
+const root = process.cwd();
 
 module.exports = {
   paths: {
-    app: path.resolve(process.cwd(), 'app'),
-    dist: path.resolve(process.cwd(), 'dist')
+    app: path.resolve(root, 'app'),
+    dist: path.resolve(root, 'dist'),
+    assetsJs: './assets/js',
+    assetsCss: './assets/css'
   },
 
   stats: {
-    dev: {
-      colors: true,
-      hash: false,
-      timings: true,
-      chunks: false,
-      chunkModules: false,
-      modules: false,
-      children: true,
-      version: true,
-      cached: false,
-      cachedAssets: false,
-      reasons: false,
-      source: false,
-      errorDetails: false
-    },
-
-    build: this.dev
+    dev: stats,
+    build: stats
   }
 };

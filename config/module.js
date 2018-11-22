@@ -1,5 +1,5 @@
 module.exports = class Module {
-  constructor(options) {
+  constructor(options = {}) {
     if (typeof options !== 'object') {
       throw new TypeError('`options` must be an object');
     }

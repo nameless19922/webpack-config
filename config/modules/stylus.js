@@ -1,15 +1,44 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const Module = require('../module');
 
 module.exports = class Stylus extends Module {
   constructor(options) {
+    const postcssPlugins = [
+      require('autoprefixer'),
+      require('postcss-inline-svg')({
+        path: 'app',
+        removeFill: true,
+      }),
+    ];
+
+    if (global.mode === 'production') {
+      postcssPlugins.push(require('cssnano'));
+    }
+
     const defaultOptions = {
       test: /\.styl$/,
-      loader: ExtractTextPlugin.extract({
-        publicPath: '../../',
-        use: ['css-loader', 'stylus-loader']
-      })
+      use: [
+        {
+          loader: 'css-hot-loader'
+        },
+        {
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            publicPath: '../../'
+          }
+        },
+        {
+          loader: 'css-loader'
+        },
+        {
+          loader: 'postcss-loader',
+          options: { plugins: postcssPlugins }
+        },
+        {
+          loader: 'stylus-loader',
+        },
+      ]
     };
 
     super({ ...defaultOptions, ...options });
