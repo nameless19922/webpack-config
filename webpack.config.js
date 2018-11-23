@@ -9,20 +9,15 @@ const webpack = require('webpack');
 
 const { paths, stats } = require('./config/consts');
 const { restModules } = require('./config/utils');
-const DevServer = require('./config/modules/dev-server');
-const Eslint = require('./config/modules/eslint');
-const Babel = require('./config/modules/babel');
-const Static = require('./config/modules/static');
-const Stylus = require('./config/modules/stylus');
-const Nunjucks = require('./config/modules/nunjucks');
-const Sourcemap = require('./config/modules/sourcemap');
+const modules = require('./config/modules');
 
 /*
   TODO:
   1. wrapper for HMR
   2. svg (srpites, inline)
   3. beautify html
-  4. multipage (glob)
+  4. multipage (readdirSync/glob)
+  5. hmr njk fix
  */
 
 module.exports = (env, argv) => {
@@ -80,11 +75,11 @@ module.exports = (env, argv) => {
     },
 
     ...restModules(
-      new Eslint(),
-      new Babel(),
-      new Static(),
-      new Nunjucks(),
-      new Stylus()
+      new modules.Eslint(),
+      new modules.Babel(),
+      new modules.Static(),
+      new modules.Nunjucks(),
+      new modules.Stylus()
     )
   ]);
 
@@ -106,8 +101,8 @@ module.exports = (env, argv) => {
         ]
       },
       ...restModules(
-        new DevServer(),
-        new Sourcemap()
+        new modules.DevServer(),
+        new modules.Sourcemap()
       )
     ]);
   }

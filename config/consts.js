@@ -18,6 +18,7 @@ module.exports = {
     app: path.resolve(root, 'app'),
     dist: path.resolve(root, 'dist'),
     assetsJs: './assets/js',
+    assetsNjk: './pages',
     assetsCss: './assets/css'
   },
 

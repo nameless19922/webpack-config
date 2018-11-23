@@ -6,7 +6,10 @@ module.exports = class Eslint extends Module {
       enforce: 'pre',
       test: /\.js$/,
       exclude: /node_modules/,
-      use: 'eslint-loader'
+      loader: 'eslint-loader',
+      options: {
+        quiet: true
+      }
     };
 
     super({ ...defaultOptions, ...options });

@@ -1,3 +1,7 @@
-import { a } from './test';
+import header from '../components/header/header';
 
-console.log(a + a);
+if (module.hot) {
+  module.hot.accept('../components/header/header', () => {
+    console.log(header(100));
+  });
+}

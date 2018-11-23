@@ -1,19 +1,16 @@
 const Module = require('../module');
-const { stats, paths } = require('../consts');
+const { stats } = require('../consts');
 
 module.exports = class DevServer extends Module {
   constructor(options) {
     const defaultOptions = {
-      contentBase: paths.dist,
       compress: true,
       hot: true,
+      inline: true,
       open: 'Chrome',
       overlay: true,
       port: 3000,
-      stats: stats.dev,
-      watchOptions: {
-        poll: true
-      }
+      stats: stats.dev
     };
 
     super({ ...defaultOptions, ...options });
