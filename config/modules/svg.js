@@ -1,19 +1,13 @@
 const Module = require('../module');
 
-module.exports = class Babel extends Module {
+module.exports = class Svg extends Module {
   constructor(options) {
     const defaultOptions = {
-      test: /\.js$/,
+      test: /\.(svg)$/,
       exclude: /node_modules/,
       use: [
         {
-          loader: 'happypack/loader',
-          options: {
-            id: 'js'
-          }
-        },
-        {
-          loader: 'babel-loader'
+          loader: 'svg-inline-loader',
         }
       ]
     };

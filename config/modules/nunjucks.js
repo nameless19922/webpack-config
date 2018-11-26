@@ -10,6 +10,9 @@ module.exports = class Nunjucks extends Module {
       use: [
         {
           loader: 'html-loader',
+          options: {
+            interpolate: true
+          }
         },
         {
           loader: 'nunjucks-html-loader',

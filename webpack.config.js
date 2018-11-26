@@ -1,11 +1,12 @@
 const path = require('path');
-const merge = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const WebpackBar = require('webpackbar');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
+const merge = require('webpack-merge');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HappyPack = require('happypack');
+const WebpackBar = require('webpackbar');
 
 const { paths, stats } = require('./config/consts');
 const { restModules } = require('./config/utils');
@@ -32,14 +33,14 @@ module.exports = (env, argv) => {
       resolve: {
         alias: {
           assets: path.resolve(paths.app, 'resources', 'assets'),
-          components: path.resolve(paths.app, 'components')
+          components: path.resolve(paths.app, 'components'),
         },
 
-        extensions: ['.js', '.styl']
+        extensions: ['.js', '.styl', '.svg'],
       },
 
       entry: {
-        app: ['./js/app.js', './stylus/app.styl']
+        app: ['./js/app.js', './stylus/app.styl'],
       },
 
       output: {
@@ -52,26 +53,31 @@ module.exports = (env, argv) => {
         minimizer: [
           new UglifyJsPlugin({
             cache: true,
-            parallel: true
-          })
-        ]
+            parallel: true,
+          }),
+        ],
       },
 
       plugins: [
+        new HappyPack({
+          id: 'js',
+          threads: 4,
+          loaders: ['babel-loader']
+        }),
         new WebpackBar({
           color: 'blue',
           name: 'webpack-config',
-          profile: true
+          profile: true,
         }),
         new MiniCssExtractPlugin({
-          filename: `${paths.assetsCss}/[name].min.css?[hash]`
+          filename: `${paths.assetsCss}/[name].min.css?[hash]`,
         }),
         new HtmlWebpackPlugin({
-          template:  './pages/index.njk',
+          template: './pages/index.njk',
           filename: './index.html',
-          chunks: ['app']
-        })
-      ]
+          chunks: ['app'],
+        }),
+      ],
     },
 
     ...restModules(
@@ -79,8 +85,9 @@ module.exports = (env, argv) => {
       new modules.Babel(),
       new modules.Static(),
       new modules.Nunjucks(),
-      new modules.Stylus()
-    )
+      new modules.Svg(),
+      new modules.Stylus(),
+    ),
   ]);
 
   if (argv.mode === 'production') {
@@ -88,22 +95,22 @@ module.exports = (env, argv) => {
       common,
       {
         plugins: [
-          new CleanWebpackPlugin([paths.dist])
-        ]
-      }
+          new CleanWebpackPlugin([paths.dist]),
+        ],
+      },
     ]);
-  } else if (argv.mode === 'development') {
+  } if (argv.mode === 'development') {
     return merge([
       common,
       {
         plugins: [
-          new webpack.HotModuleReplacementPlugin()
-        ]
+          new webpack.HotModuleReplacementPlugin(),
+        ],
       },
       ...restModules(
         new modules.DevServer(),
-        new modules.Sourcemap()
-      )
+        new modules.Sourcemap(),
+      ),
     ]);
   }
-}
+};
