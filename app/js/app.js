@@ -1,1 +1,3 @@
-console.log('webpack config');
+if (module.hot) {
+  module.hot.accept();
+}
