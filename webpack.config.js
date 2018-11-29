@@ -1,4 +1,5 @@
 const path = require('path');
+
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -6,6 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HappyPack = require('happypack');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const WebpackBar = require('webpackbar');
 
 const { paths, stats } = require('./config/consts');
@@ -15,10 +17,9 @@ const modules = require('./config/modules');
 /*
   TODO:
   1. wrapper for HMR
-  2. svg (srpites, inline)
-  3. beautify html
-  4. multipage (readdirSync/glob)
-  5. hmr njk fix
+  2. beautify html
+  3. multipage (readdirSync/glob)
+  4. hmr njk fix
  */
 
 module.exports = (env, argv) => {
@@ -34,6 +35,7 @@ module.exports = (env, argv) => {
         alias: {
           assets: path.resolve(paths.app, 'resources', 'assets'),
           components: path.resolve(paths.app, 'components'),
+          icons: path.resolve(paths.app, 'icons')
         },
 
         extensions: ['.js', '.styl', '.svg'],
@@ -77,6 +79,9 @@ module.exports = (env, argv) => {
           filename: './index.html',
           chunks: ['app'],
         }),
+        new SpriteLoaderPlugin({
+          plainSprite: true
+        }),
       ],
     },
 
@@ -86,6 +91,7 @@ module.exports = (env, argv) => {
       new modules.Static(),
       new modules.Nunjucks(),
       new modules.Svg(),
+      new modules.Sprite(),
       new modules.Stylus(),
     ),
   ]);

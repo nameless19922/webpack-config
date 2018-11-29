@@ -15,6 +15,7 @@ const root = process.cwd();
 
 module.exports = {
   paths: {
+    root,
     app: path.resolve(root, 'app'),
     dist: path.resolve(root, 'dist'),
     assetsJs: './assets/js',
