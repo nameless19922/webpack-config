@@ -12,10 +12,10 @@ module.exports = class Static extends Module {
           loader: 'file-loader',
           options: {
             context: path.resolve(paths.app, 'resources'),
-            name: '[path][name].[ext]'
-          }
-        }
-      ]
+            name: '[path][name].[ext]',
+          },
+        },
+      ],
     };
 
     super({ ...defaultOptions, ...options });
@@ -23,7 +23,7 @@ module.exports = class Static extends Module {
 
   get config() {
     return {
-      module: { rules: [this.options] }
+      module: { rules: [this.options] },
     };
   }
 }

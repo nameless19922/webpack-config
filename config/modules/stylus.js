@@ -20,25 +20,25 @@ module.exports = class Stylus extends Module {
       test: /\.styl$/,
       use: [
         {
-          loader: 'css-hot-loader'
+          loader: 'css-hot-loader',
         },
         {
           loader: MiniCssExtractPlugin.loader,
           options: {
-            publicPath: '../../'
+            publicPath: '../../',
           }
         },
         {
-          loader: 'css-loader'
+          loader: 'css-loader',
         },
         {
           loader: 'postcss-loader',
-          options: { plugins: postcssPlugins }
+          options: { plugins: postcssPlugins },
         },
         {
           loader: 'stylus-loader',
         },
-      ]
+      ],
     };
 
     super({ ...defaultOptions, ...options });
@@ -46,7 +46,7 @@ module.exports = class Stylus extends Module {
 
   get config() {
     return {
-      module: { rules: [this.options] }
+      module: { rules: [this.options] },
     };
   }
 }

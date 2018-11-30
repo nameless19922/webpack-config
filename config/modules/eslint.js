@@ -8,8 +8,8 @@ module.exports = class Eslint extends Module {
       exclude: /node_modules/,
       loader: 'eslint-loader',
       options: {
-        quiet: true
-      }
+        quiet: true,
+      },
     };
 
     super({ ...defaultOptions, ...options });
@@ -17,7 +17,7 @@ module.exports = class Eslint extends Module {
 
   get config() {
     return {
-      module: { rules: [this.options] }
+      module: { rules: [this.options] },
     };
   }
 }

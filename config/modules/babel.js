@@ -7,14 +7,8 @@ module.exports = class Babel extends Module {
       exclude: /node_modules/,
       use: [
         {
-          loader: 'happypack/loader',
-          options: {
-            id: 'js'
-          }
+          loader: 'babel-loader',
         },
-        {
-          loader: 'babel-loader'
-        }
       ]
     };
 
@@ -23,7 +17,7 @@ module.exports = class Babel extends Module {
 
   get config() {
     return {
-      module: { rules: [this.options] }
+      module: { rules: [this.options] },
     };
   }
 }

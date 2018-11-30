@@ -6,9 +6,9 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HappyPack = require('happypack');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const WebpackBar = require('webpackbar');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 const { paths, stats } = require('./config/consts');
 const { restModules } = require('./config/utils');
@@ -16,10 +16,8 @@ const modules = require('./config/modules');
 
 /*
   TODO:
-  1. wrapper for HMR
-  2. beautify html
-  3. multipage (readdirSync/glob)
-  4. hmr njk fix
+  1. beautify html
+  2. multipage (readdirSync/glob)
  */
 
 module.exports = (env, argv) => {
@@ -42,7 +40,7 @@ module.exports = (env, argv) => {
       },
 
       entry: {
-        app: ['./js/app.js', './stylus/app.styl'],
+        app: ['./js/app.js', './stylus/app.styl', '../server/client'],
       },
 
       output: {
@@ -61,11 +59,6 @@ module.exports = (env, argv) => {
       },
 
       plugins: [
-        new HappyPack({
-          id: 'js',
-          threads: 4,
-          loaders: ['babel-loader']
-        }),
         new WebpackBar({
           color: 'blue',
           name: 'webpack-config',
@@ -109,13 +102,18 @@ module.exports = (env, argv) => {
     return merge([
       common,
       {
+        mode: 'development',
         plugins: [
           new webpack.HotModuleReplacementPlugin(),
+          new webpack.NoEmitOnErrorsPlugin(),
+          new OpenBrowserPlugin({
+            url: 'http://localhost:3000',
+            browser: 'Chrome'
+          })
         ],
       },
       ...restModules(
-        new modules.DevServer(),
-        new modules.Sourcemap(),
+        new modules.Sourcemap()
       ),
     ]);
   }

@@ -6,6 +6,6 @@ module.exports = class Sourcemap extends Module {
   }
 
   get config() {
-    return { devtool: 'source-map' }
+    return { devtool: 'source-map' };
   }
 }

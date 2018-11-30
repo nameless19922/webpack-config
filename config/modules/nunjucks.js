@@ -11,18 +11,18 @@ module.exports = class Nunjucks extends Module {
         {
           loader: 'html-loader',
           options: {
-            interpolate: true
-          }
+            interpolate: true,
+          },
         },
         {
           loader: 'nunjucks-html-loader',
           options: {
             searchPaths: [
               path.resolve(paths.app, 'components'),
-            ]
-          }
-        }
-      ]
+            ],
+          },
+        },
+      ],
     };
 
     super({ ...defaultOptions, ...options });

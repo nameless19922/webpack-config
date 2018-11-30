@@ -9,7 +9,7 @@ module.exports = class Sprite extends Module {
       test: /\.(svg)$/,
       exclude: [
         path.resolve(paths.root, 'node_modules'),
-        path.resolve(paths.app, 'resources')
+        path.resolve(paths.app, 'resources'),
       ],
       use: [
         {
@@ -18,10 +18,10 @@ module.exports = class Sprite extends Module {
             extract: true,
             runtimeCompat: true,
             spriteFilename: 'assets/images/icons.svg',
-            symbolId: filePath => `icon_${path.basename(filePath, path.extname(filePath))}`
-          }
-        }
-      ]
+            symbolId: filePath => `icon_${path.basename(filePath, path.extname(filePath))}`,
+          },
+        },
+      ],
     };
 
     super({ ...defaultOptions, ...options });
@@ -29,7 +29,7 @@ module.exports = class Sprite extends Module {
 
   get config() {
     return {
-      module: { rules: [this.options] }
+      module: { rules: [this.options] },
     };
   }
 }

@@ -3,12 +3,13 @@ const path = require('path');
 const stats = {
   all: false,
   assets: true,
+  colors: true,
   modules: true,
   maxModules: 0,
   errors: true,
   warnings: true,
   moduleTrace: true,
-  errorDetails: true
+  errorDetails: true,
 };
 
 const root = process.cwd();
@@ -20,11 +21,11 @@ module.exports = {
     dist: path.resolve(root, 'dist'),
     assetsJs: './assets/js',
     assetsNjk: './pages',
-    assetsCss: './assets/css'
+    assetsCss: './assets/css',
   },
 
   stats: {
     dev: stats,
-    build: stats
+    build: stats,
   }
 };
