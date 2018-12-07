@@ -1,13 +1,28 @@
 const chokidar = require('chokidar');
 
-module.exports = (server) => {
-  const watcher = chokidar.watch([
-    './app/pages/**/*.njk',
-    './app/components/**/*.njk'
-  ]);
+class Watcher {
+  constructor(files, server) {
+    this.watcher = chokidar.watch(files);
+    this.server = server;
+  }
 
-  watcher.on('change', (path) => {
-    console.log('File [' + path + '] changed ');
-    server.reload();
-  });
+  on(type, cb) {
+    this.watcher.on(type, (path) => {
+      console.log(`File "${path}" ${type}d`);
+
+      if (typeof cb === 'function') {
+        cb.call(this);
+      }
+
+      this.server.reload();
+    });
+  }
+}
+
+module.exports = (server) => {
+  // recompile njk templates after change (for correct HMR)
+  new Watcher([
+    './app/pages/*.njk',
+    './app/components/**/*.njk'
+  ], server).on('change');
 };

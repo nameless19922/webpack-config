@@ -12,22 +12,27 @@ module.exports = class Stylus extends Module {
       }),
     ];
 
-    if (global.mode === 'production') {
+    let loader = {};
+
+    if (Stylus.isProduction()) {
       postcssPlugins.push(require('cssnano'));
+
+      loader = {
+        loader: MiniCssExtractPlugin.loader,
+        options: {
+          publicPath: '../../',
+        },
+      };
+    } else {
+      loader = {
+        loader: 'style-loader',
+      };
     }
 
     const defaultOptions = {
       test: /\.styl$/,
       use: [
-        {
-          loader: 'css-hot-loader',
-        },
-        {
-          loader: MiniCssExtractPlugin.loader,
-          options: {
-            publicPath: '../../',
-          }
-        },
+        loader,
         {
           loader: 'css-loader',
         },
@@ -44,9 +49,8 @@ module.exports = class Stylus extends Module {
     super({ ...defaultOptions, ...options });
   }
 
+
   get config() {
-    return {
-      module: { rules: [this.options] },
-    };
+    return this.options;
   }
-}
+};

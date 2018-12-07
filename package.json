@@ -4,8 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "build": "webpack --mode production"
+    "start": "nodemon -L",
+    "build": "webpack --mode production",
+    "lint": "eslint ./app --ext .js,"
+  },
+  "nodemonConfig": {
+    "exec": "node index.js",
+    "restartable": "rs",
+    "ignore": [
+      ".git",
+      "node_modules/**/node_modules",
+      "server/client.js"
+    ],
+    "verbose": true,
+    "watch": [
+      "webpack.config.js",
+      "index.js",
+      "config",
+      "server"
+    ],
+    "ext": "js json"
   },
   "keywords": [],
   "author": "",
@@ -13,13 +31,13 @@
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.2.0",
     "@babel/preset-env": "^7.1.6",
     "autoprefixer": "^9.3.1",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
     "chokidar": "^2.0.4",
     "clean-webpack-plugin": "^1.0.0",
-    "css-hot-loader": "^1.4.2",
     "css-loader": "^1.0.1",
     "cssnano": "^4.1.7",
     "eslint": "^5.9.0",
@@ -28,10 +46,12 @@
     "eslint-plugin-import": "^2.14.0",
     "express": "^4.16.4",
     "file-loader": "^2.0.0",
-    "happypack": "^5.0.0",
+    "glob": "^7.1.3",
+    "html-beautify-webpack-plugin": "^1.0.5",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.4.5",
+    "nodemon": "^1.18.7",
     "nunjucks-html-loader": "^1.1.0",
     "open-browser-webpack-plugin": "0.0.5",
     "postcss-inline-svg": "^3.1.1",
@@ -47,7 +67,6 @@
     "webpack-cli": "^3.1.2",
     "webpack-dev-middleware": "^3.4.0",
     "webpack-hot-middleware": "^2.24.3",
-    "webpack-merge": "^4.1.4",
-    "webpackbar": "^3.1.3"
+    "webpack-merge": "^4.1.4"
   }
 }

@@ -28,8 +28,6 @@ module.exports = class Sprite extends Module {
   }
 
   get config() {
-    return {
-      module: { rules: [this.options] },
-    };
+    return this.options;
   }
 }

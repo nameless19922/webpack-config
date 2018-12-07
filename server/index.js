@@ -4,7 +4,6 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
 const webpackConfig = require('../webpack.config');
-const { stats } = require('../config/consts');
 
 module.exports = class Server {
   constructor(port, opts) {
@@ -14,7 +13,7 @@ module.exports = class Server {
 
     this.app = express();
     this.port = port;
-    this.devMiddleware = webpackDevMiddleware(webpackCompiller, { stats: stats.dev });
+    this.devMiddleware = webpackDevMiddleware(webpackCompiller, opts);
     this.hotMiddleware = webpackHotMiddleware(webpackCompiller);
 
     this.app.use(this.devMiddleware);
@@ -30,11 +29,10 @@ module.exports = class Server {
       return console.log(err);
     }
 
-    console.log('Listening at http://localhost:3000/');
+    console.log(`Listening at http://localhost:${this.port}/`);
   }
 
   reload() {
-    console.log(this.hotMiddleware)
     this.hotMiddleware.publish({ action: 'reload' });
   }
 }

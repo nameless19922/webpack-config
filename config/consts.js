@@ -15,6 +15,8 @@ const stats = {
 const root = process.cwd();
 
 module.exports = {
+  port: 3000,
+
   paths: {
     root,
     app: path.resolve(root, 'app'),

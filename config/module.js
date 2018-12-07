@@ -7,6 +7,10 @@ module.exports = class Module {
     this.options = options;
   }
 
+  static isProduction() {
+    return global.mode === 'production';
+  }
+
   get config() {
     return this.options;
   }

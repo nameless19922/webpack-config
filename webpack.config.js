@@ -1,24 +1,24 @@
 const path = require('path');
-
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
-const WebpackBar = require('webpackbar');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
-
-const { paths, stats } = require('./config/consts');
-const { restModules } = require('./config/utils');
+const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
+const { paths, stats, port } = require('./config/consts');
+const { restModules, generateHtmlPages } = require('./config/utils');
 const modules = require('./config/modules');
 
 /*
-  TODO:
-  1. beautify html
-  2. multipage (readdirSync/glob)
- */
+ TODO:
+  refactoring
+  add:
+    1. turn off inject chunks,
+    2. aliases setup
+    3. replacement css-minifier
+*/
 
 module.exports = (env, argv) => {
   global.mode = argv.mode;
@@ -32,7 +32,6 @@ module.exports = (env, argv) => {
       resolve: {
         alias: {
           assets: path.resolve(paths.app, 'resources', 'assets'),
-          components: path.resolve(paths.app, 'components'),
           icons: path.resolve(paths.app, 'icons')
         },
 
@@ -40,12 +39,12 @@ module.exports = (env, argv) => {
       },
 
       entry: {
-        app: ['./js/app.js', './stylus/app.styl', '../server/client'],
+        app: ['./js/app.js', '../server/client'],
       },
 
       output: {
-        chunkFilename: `${paths.assetsJs}/[name].min.js?[hash]`,
-        filename: `${paths.assetsJs}/[name].min.js?[hash]`,
+        chunkFilename: `${paths.assetsJs}/[name].min.js`,
+        filename: `${paths.assetsJs}/[name].min.js`,
         path: paths.dist,
       },
 
@@ -58,35 +57,28 @@ module.exports = (env, argv) => {
         ],
       },
 
+      module: {
+        rules: restModules(
+          new modules.Nunjucks(),
+          new modules.Eslint(),
+          new modules.Babel(),
+          new modules.Static(),
+          new modules.Svg(),
+          new modules.Sprite(),
+          new modules.Stylus(),
+        ),
+      },
+
       plugins: [
-        new WebpackBar({
-          color: 'blue',
-          name: 'webpack-config',
-          profile: true,
-        }),
         new MiniCssExtractPlugin({
-          filename: `${paths.assetsCss}/[name].min.css?[hash]`,
+          filename: `${paths.assetsCss}/[name].min.css`,
         }),
-        new HtmlWebpackPlugin({
-          template: './pages/index.njk',
-          filename: './index.html',
-          chunks: ['app'],
-        }),
+        ...generateHtmlPages(),
         new SpriteLoaderPlugin({
           plainSprite: true
         }),
       ],
     },
-
-    ...restModules(
-      new modules.Eslint(),
-      new modules.Babel(),
-      new modules.Static(),
-      new modules.Nunjucks(),
-      new modules.Svg(),
-      new modules.Sprite(),
-      new modules.Stylus(),
-    ),
   ]);
 
   if (argv.mode === 'production') {
@@ -95,26 +87,34 @@ module.exports = (env, argv) => {
       {
         plugins: [
           new CleanWebpackPlugin([paths.dist]),
+          new HtmlBeautifyPlugin({
+            config: {
+              html: JSON.parse(require('fs').readFileSync('./.jsbeautifyrc')),
+            },
+          }),
         ],
       },
     ]);
   } if (argv.mode === 'development') {
     return merge([
       common,
+
+      ...restModules(
+        new modules.Sourcemap(),
+      ),
+
       {
         mode: 'development',
+
         plugins: [
           new webpack.HotModuleReplacementPlugin(),
           new webpack.NoEmitOnErrorsPlugin(),
           new OpenBrowserPlugin({
-            url: 'http://localhost:3000',
-            browser: 'Chrome'
+            url: `http://localhost:${port}`,
+            browser: 'Chrome',
           })
         ],
       },
-      ...restModules(
-        new modules.Sourcemap()
-      ),
     ]);
   }
 };

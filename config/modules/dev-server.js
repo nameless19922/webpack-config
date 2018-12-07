@@ -1,5 +1,5 @@
 const Module = require('../module');
-const { stats } = require('../consts');
+const { stats, paths } = require('../consts');
 
 // у dev-server есть проблемы релоадом html при включенном hmr
 // для hmr реализован свой сервер с dev/hot middleware

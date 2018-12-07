@@ -8,6 +8,9 @@ module.exports = class Babel extends Module {
       use: [
         {
           loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+          },
         },
       ]
     };
@@ -16,8 +19,6 @@ module.exports = class Babel extends Module {
   }
 
   get config() {
-    return {
-      module: { rules: [this.options] },
-    };
+    return this.options;
   }
 }

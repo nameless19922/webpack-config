@@ -22,8 +22,6 @@ module.exports = class Static extends Module {
   }
 
   get config() {
-    return {
-      module: { rules: [this.options] },
-    };
+    return this.options;
   }
 }

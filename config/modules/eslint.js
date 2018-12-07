@@ -16,8 +16,6 @@ module.exports = class Eslint extends Module {
   }
 
   get config() {
-    return {
-      module: { rules: [this.options] },
-    };
+    return this.options;
   }
 }
