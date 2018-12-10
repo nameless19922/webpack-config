@@ -7,7 +7,7 @@
     "url": "https://github.com/nameless19922/webpack-config.git"
   },
 
-  "main": "index.babel.js",
+  "main": "index.js",
   "scripts": {
     "start": "nodemon -L",
     "build": "rimraf dist && webpack --mode production",
