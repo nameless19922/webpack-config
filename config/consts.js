@@ -1,6 +1,20 @@
-const path = require('path');
+import path from 'path';
 
-const stats = {
+const root = process.cwd();
+
+export const port = 3000;
+
+export const paths = {
+  root,
+  app: path.resolve(root, 'app'),
+  dist: path.resolve(root, 'dist'),
+  appJs: './js',
+  buildJs: './assets/js',
+  buildNjk: './pages',
+  buildCss: './assets/css',
+};
+
+export const stats = {
   all: false,
   assets: true,
   colors: true,
@@ -10,24 +24,4 @@ const stats = {
   warnings: true,
   moduleTrace: true,
   errorDetails: true,
-};
-
-const root = process.cwd();
-
-module.exports = {
-  port: 3000,
-
-  paths: {
-    root,
-    app: path.resolve(root, 'app'),
-    dist: path.resolve(root, 'dist'),
-    assetsJs: './assets/js',
-    assetsNjk: './pages',
-    assetsCss: './assets/css',
-  },
-
-  stats: {
-    dev: stats,
-    build: stats,
-  }
 };

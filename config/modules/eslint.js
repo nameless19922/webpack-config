@@ -1,18 +1,15 @@
 import Module from '../module';
 
-export default class Babel extends Module {
+export default class Eslint extends Module {
   constructor(options) {
     const defaultOptions = {
+      enforce: 'pre',
       test: /\.js$/,
       exclude: /node_modules/,
-      use: [
-        {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: true,
-          },
-        },
-      ]
+      loader: 'eslint-loader',
+      options: {
+        quiet: true,
+      },
     };
 
     super({ ...defaultOptions, ...options });

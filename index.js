@@ -1,10 +1,10 @@
-const Server = require('./server');
-const hotReloader = require('./server/hot-reloader');
-const { stats, port } = require('./config/consts');
+import Server from './server';
+import hotReloader from './server/hot-reloader';
+import { port, stats } from './config/consts';
 
 const server = new Server(port, {
   logTime: true,
-  stats: stats.dev,
+  stats,
 });
 
 hotReloader(server);

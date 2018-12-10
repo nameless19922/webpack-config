@@ -1,11 +1,11 @@
-const webpack = require('webpack');
-const express = require('express');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
+import webpack from 'webpack';
+import express from 'express';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
 
-const webpackConfig = require('../webpack.config');
+import webpackConfig from '../webpack.config.babel';
 
-module.exports = class Server {
+export default class Server {
   constructor(port, opts) {
     const webpackCompiller = webpack(webpackConfig({}, {
       mode: 'development'

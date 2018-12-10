@@ -1,9 +1,9 @@
-const path = require('path');
+import path from 'path';
 
-const { paths } = require('../consts');
-const Module = require('../module');
+import { paths } from '../consts';
+import Module from '../module';
 
-module.exports = class Svg extends Module {
+export default class Svg extends Module {
   constructor(options) {
     const defaultOptions = {
       test: /\.(svg)$/,

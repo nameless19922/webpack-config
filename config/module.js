@@ -1,14 +1,10 @@
-module.exports = class Module {
+export default class Module {
   constructor(options = {}) {
     if (typeof options !== 'object') {
       throw new TypeError('`options` must be an object');
     }
 
     this.options = options;
-  }
-
-  static isProduction() {
-    return global.mode === 'production';
   }
 
   get config() {

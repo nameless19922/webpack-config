@@ -1,10 +1,10 @@
-const path = require('path');
-const glob = require('glob');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import path from 'path';
+import glob from 'glob';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-const { paths } = require('./consts');
+import { paths } from './consts';
 
-function restModules(...args) {
+export function restModules(...args) {
   if (!Array.isArray(args)) {
     throw new TypeError('`args` must be an array');
   }
@@ -12,7 +12,7 @@ function restModules(...args) {
   return args.map(item => item.config);
 }
 
-function getEntries(dir, ext) {
+export function getEntries(dir, ext) {
   if (typeof dir !== 'string') {
     throw new TypeError('`dir` must be an array');
   }
@@ -24,7 +24,7 @@ function getEntries(dir, ext) {
   return glob.sync(path.resolve(paths.app, dir, `*${ext}`));
 }
 
-function generateHtmlPages() {
+export function generateHtmlPages() {
   const dir = 'pages';
 
   return getEntries(dir, '.njk').map((item) => {
@@ -40,9 +40,3 @@ function generateHtmlPages() {
     });
   });
 }
-
-module.exports = {
-  restModules,
-  getEntries,
-  generateHtmlPages
-};

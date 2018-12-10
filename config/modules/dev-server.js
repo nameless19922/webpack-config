@@ -1,17 +1,17 @@
-const Module = require('../module');
-const { stats, paths } = require('../consts');
+import Module from '../module';
+import { stats } from '../consts';
 
 // у dev-server есть проблемы релоадом html при включенном hmr
 // для hmr реализован свой сервер с dev/hot middleware
 // если необходимости в hmr нет, можно подключать данный модуль
-module.exports = class DevServer extends Module {
+export default class DevServer extends Module {
   constructor(options) {
     const defaultOptions = {
       compress: true,
       open: 'Chrome',
       overlay: true,
       port: 3000,
-      stats: stats.dev,
+      stats,
     };
 
     super({ ...defaultOptions, ...options });

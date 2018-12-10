@@ -1,4 +1,4 @@
-const chokidar = require('chokidar');
+import chokidar from 'chokidar';
 
 class Watcher {
   constructor(files, server) {
@@ -19,7 +19,7 @@ class Watcher {
   }
 }
 
-module.exports = (server) => {
+export default (server) => {
   // recompile njk templates after change (for correct HMR)
   new Watcher([
     './app/pages/*.njk',

@@ -1,8 +1,8 @@
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-const Module = require('../module');
+import Module from '../module';
 
-module.exports = class Stylus extends Module {
+export default class Stylus extends Module {
   constructor(options) {
     const postcssPlugins = [
       require('autoprefixer'),
@@ -14,7 +14,7 @@ module.exports = class Stylus extends Module {
 
     let loader = {};
 
-    if (Stylus.isProduction()) {
+    if (global.mode === 'production') {
       postcssPlugins.push(require('cssnano'));
 
       loader = {

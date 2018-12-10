@@ -1,9 +1,9 @@
-const path = require('path');
+import path from 'path';
 
-const Module = require('../module');
-const { paths } = require('../consts');
+import Module from '../module';
+import { paths } from '../consts';
 
-module.exports = class Nunjucks extends Module {
+export default class Nunjucks extends Module {
   constructor(options) {
     const defaultOptions = {
       test: /\.(html|njk)$/,
