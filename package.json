@@ -76,6 +76,7 @@
   },
   "dependencies": {
     "core-js": "^2.6.0",
+    "event-source-polyfill": "^1.0.5",
     "jquery": "^3.3.1"
   }
 }
