@@ -6,7 +6,6 @@
     "type": "git",
     "url": "https://github.com/nameless19922/webpack-config.git"
   },
-
   "main": "index.js",
   "scripts": {
     "start": "nodemon -L",
