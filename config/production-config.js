@@ -1,4 +1,5 @@
 import HtmlBeautifyPlugin from 'html-beautify-webpack-plugin';
+import { readFileSync } from 'fs';
 
 import BaseConfig from './base-config';
 
@@ -12,7 +13,7 @@ export default class ProductionBase extends BaseConfig {
 
     config.plugins.push(new HtmlBeautifyPlugin({
       config: {
-        html: JSON.parse(require('fs').readFileSync('.jsbeautifyrc')),
+        html: JSON.parse(readFileSync('.jsbeautifyrc')),
       },
     }));
 

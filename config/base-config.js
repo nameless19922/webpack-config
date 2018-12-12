@@ -58,6 +58,7 @@ export default class BaseConfig {
       new SpriteLoaderPlugin({
         plainSprite: true
       }),
+      new webpack.ProgressPlugin(),
       new FriendlyErrorsWebpackPlugin(),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(this.mode),

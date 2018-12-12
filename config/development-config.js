@@ -24,7 +24,7 @@ export default class DevelopmentBase extends BaseConfig {
       }),
     );
 
-    config.devtool = 'source-map';
+    config.devtool = 'cheap-eval-source-map';
 
     return config;
   }
