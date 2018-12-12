@@ -1,3 +1,4 @@
-import { NativeEventSource, EventSourcePolyfill } from 'event-source-polyfill';
-
-window.EventSource = NativeEventSource || EventSourcePolyfill;
+/* eslint global-require: "off" */
+if (process.env.NODE_ENV === 'development') {
+  window.EventSource = require('event-source-polyfill').EventSourcePolyfill;
+}

@@ -56,6 +56,9 @@ export default class BaseConfig {
       new SpriteLoaderPlugin({
         plainSprite: true
       }),
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(this.mode),
+      }),
       new webpack.ProvidePlugin({
         $: 'jquery',
         jQuery: 'jquery',
@@ -93,6 +96,7 @@ export default class BaseConfig {
 
       resolve: {
         alias: this.alias(),
+        aliasFields: ['browser'],
         extensions: ['.js', '.styl', '.svg'],
       },
 
