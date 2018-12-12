@@ -7,9 +7,7 @@ class Watcher {
   }
 
   on(type, cb) {
-    this.watcher.on(type, (path) => {
-      console.log(`File "${path}" ${type}d`);
-
+    this.watcher.on(type, () => {
       if (typeof cb === 'function') {
         cb.call(this);
       }

@@ -1,10 +1,9 @@
 import Server from './server';
 import hotReloader from './server/hot-reloader';
-import { port, stats } from './config/consts';
+import { port } from './config/consts';
 
 const server = new Server(port, {
-  logTime: true,
-  stats,
+  logLevel: 'silent',
 });
 
 hotReloader(server);

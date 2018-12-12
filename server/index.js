@@ -14,7 +14,9 @@ export default class Server {
     this.app = express();
     this.port = port;
     this.devMiddleware = webpackDevMiddleware(webpackCompiller, opts);
-    this.hotMiddleware = webpackHotMiddleware(webpackCompiller);
+    this.hotMiddleware = webpackHotMiddleware(webpackCompiller, {
+      log: false,
+    });
 
     this.app.use(this.devMiddleware);
     this.app.use(this.hotMiddleware);

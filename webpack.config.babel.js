@@ -3,7 +3,9 @@ import DevelopmentConfig from './config/development-config';
 import ProductionConfig from './config/production-config';
 
 /*
-  TODO: Jest
+  TODO:
+    1. Jest
+    2. logging njk errors
  */
 
 export default (env, argv) => {

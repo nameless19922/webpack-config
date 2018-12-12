@@ -3,6 +3,7 @@ import webpack from 'webpack';
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import SpriteLoaderPlugin from 'svg-sprite-loader/plugin';
+import  FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
 
 import { restModules, generateHtmlPages } from './utils';
 import modules from './modules';
@@ -32,6 +33,7 @@ export default class BaseConfig {
       chunkFilename: `${this.dirs.buildJs}/[name]${this.getMinFilename()}.js`,
       filename: `${this.dirs.buildJs}/[name]${this.getMinFilename()}.js`,
       path: this.dirs.buildDir,
+      pathinfo: true,
     };
   }
 
@@ -56,6 +58,7 @@ export default class BaseConfig {
       new SpriteLoaderPlugin({
         plainSprite: true
       }),
+      new FriendlyErrorsWebpackPlugin(),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(this.mode),
       }),
@@ -88,6 +91,8 @@ export default class BaseConfig {
 
   config() {
     return {
+      bail: true,
+
       context: this.dirs.srcDir,
 
       mode: this.mode,
