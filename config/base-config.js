@@ -92,8 +92,6 @@ export default class BaseConfig {
 
   config() {
     return {
-      bail: true,
-
       context: this.dirs.srcDir,
 
       mode: this.mode,
