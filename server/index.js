@@ -14,9 +14,7 @@ export default class Server {
     this.app = express();
     this.port = port;
     this.devMiddleware = webpackDevMiddleware(webpackCompiller, opts);
-    this.hotMiddleware = webpackHotMiddleware(webpackCompiller, {
-      log: false,
-    });
+    this.hotMiddleware = webpackHotMiddleware(webpackCompiller, { log: false });
 
     this.app.use(this.devMiddleware);
     this.app.use(this.hotMiddleware);
@@ -28,7 +26,7 @@ export default class Server {
 
   onStart(err) {
     if (err) {
-      return console.log(err);
+      return console.error(err);
     }
 
     console.log(`Listening at http://localhost:${this.port}/`);

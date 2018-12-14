@@ -1,4 +1,5 @@
 import path from 'path';
+import { readFileSync } from 'fs';
 
 import Module from '../module';
 import { paths } from '../consts';
@@ -15,11 +16,10 @@ export default class Nunjucks extends Module {
           },
         },
         {
-          loader: 'nunjucks-html-loader',
+          loader: 'njk-loader',
           options: {
-            searchPaths: [
-              path.resolve(paths.app, 'components'),
-            ],
+            root: path.resolve(paths.app, 'components'),
+            data: JSON.parse(readFileSync('./data.json')),
           },
         },
       ],

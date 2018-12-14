@@ -18,6 +18,6 @@ export default class DevServer extends Module {
   }
 
   get config() {
-    return { devServer: this.options };
+    return this.options;
   }
 }

@@ -3,7 +3,7 @@ import webpack from 'webpack';
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import SpriteLoaderPlugin from 'svg-sprite-loader/plugin';
-import  FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
+import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
 
 import { restModules, generateHtmlPages } from './utils';
 import modules from './modules';
@@ -79,6 +79,10 @@ export default class BaseConfig {
     };
   }
 
+  modules() {
+    return ['node_modules', path.resolve(process.cwd(), 'config', 'loaders')]
+  }
+
   optimization() {
     return {
       minimizer: [
@@ -102,6 +106,10 @@ export default class BaseConfig {
         alias: this.alias(),
         aliasFields: ['browser'],
         extensions: ['.js', '.styl', '.svg'],
+      },
+
+      resolveLoader: {
+        modules: this.modules()
       },
 
       entry: this.entry(),
