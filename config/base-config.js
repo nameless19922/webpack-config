@@ -7,6 +7,7 @@ import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
 
 import { restModules, generateHtmlPages } from './utils';
 import modules from './modules';
+import { paths } from './consts';
 
 export default class BaseConfig {
   constructor(options) {
@@ -38,15 +39,20 @@ export default class BaseConfig {
   }
 
   rules() {
-    return restModules(
-      new modules.Nunjucks(),
+    const modulesList = [
       new modules.Babel(),
-      new modules.Eslint(),
+      new modules.Nunjucks(),
       new modules.Static(),
       new modules.Svg(),
       new modules.Sprite(),
       new modules.Stylus(),
-    );
+    ];
+
+    if (process.env.ESLINT) {
+      modulesList.unshift(new modules.Eslint());
+    }
+
+    return restModules(...modulesList);
   }
 
   plugins() {
@@ -54,19 +60,23 @@ export default class BaseConfig {
       new MiniCssExtractPlugin({
         filename: `${this.dirs.buildCss}/[name]${this.getMinFilename()}.css`,
       }),
+
       ...generateHtmlPages(),
+
       new SpriteLoaderPlugin({
         plainSprite: true
       }),
+
       new webpack.ProgressPlugin(),
       new FriendlyErrorsWebpackPlugin(),
+
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(this.mode),
       }),
       new webpack.ProvidePlugin({
         $: 'jquery',
         jQuery: 'jquery',
-      })
+      }),
     ];
   }
 
@@ -80,7 +90,7 @@ export default class BaseConfig {
   }
 
   modules() {
-    return ['node_modules', path.resolve(process.cwd(), 'config', 'loaders')]
+    return ['node_modules', path.resolve(paths.root, 'config', 'loaders')]
   }
 
   optimization() {

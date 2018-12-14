@@ -2,7 +2,7 @@ import path from 'path';
 
 const root = process.cwd();
 
-export const port = 3000;
+export const port = process.env.PORT || 3000;
 
 export const paths = {
   root,
