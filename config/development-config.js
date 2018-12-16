@@ -26,7 +26,7 @@ export default class DevelopmentBase extends BaseConfig {
     const config = super.config();
     const { JS_SOURCEMAP, OPEN, HMR } = process.env;
 
-    if (HMR) {
+    if (!!HMR) {
       config.entry.app.push('../server/client');
 
       config.plugins.push(
