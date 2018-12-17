@@ -5,7 +5,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import SpriteLoaderPlugin from 'svg-sprite-loader/plugin';
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
 
-import { restModules, generateHtmlPages } from './utils';
+import { restModules, generateHtmlPages, parseBool } from './utils';
 import modules from './modules';
 import { paths } from './consts';
 
@@ -48,7 +48,7 @@ export default class BaseConfig {
       new modules.Stylus(),
     ];
 
-    if (process.env.ESLINT) {
+    if (parseBool(process.env.ESLINT)) {
       modulesList.unshift(new modules.Eslint());
     }
 

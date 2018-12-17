@@ -1,7 +1,9 @@
 import webpack from 'webpack';
-import OpenBrowserPlugin from 'open-browser-webpack-plugin';
 
 import BaseConfig from './base-config';
+import modules from './modules';
+import { stats } from './consts';
+import { parseBool } from './utils';
 
 export default class DevelopmentBase extends BaseConfig {
   constructor(options) {
@@ -10,34 +12,30 @@ export default class DevelopmentBase extends BaseConfig {
     this.port = options.port;
   }
 
-  getOpenBrowserOptions(open) {
-    const openBrowserOpts = {
-      url: `http://localhost:${this.port}`,
-    };
-
-    if (!!open) {
-      openBrowserOpts.browser = 'Chrome';
-    }
-
-    return openBrowserOpts;
-  }
-
   config() {
     const config = super.config();
-    const { JS_SOURCEMAP, OPEN, HMR } = process.env;
+    const { JS_SOURCEMAP, HMR, OPEN } = process.env;
 
-    if (HMR) {
-      config.entry.app.push('../server/client');
+    const hot = parseBool(HMR);
+    const open = typeof OPEN === 'undefined' ? 'Chrome' : parseBool(HMR);
 
+    if (hot) {
       config.plugins.push(
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
       );
+
+      config.entry.app.push = [
+        `webpack-dev-server/client?http://localhost:${this.port}`,
+        'webpack/hot/only-dev-server',
+      ];
     }
 
-    config.plugins.push(
-      new OpenBrowserPlugin(this.getOpenBrowserOptions(OPEN)),
-    );
+    config.devServer = new modules.DevServer({
+      hot,
+      open,
+      port: this.port,
+      stats,
+    }).config;
 
     // styles of source mapping: https://webpack.js.org/configuration/devtool/
     config.devtool = JS_SOURCEMAP || 'cheap-eval-source-map';

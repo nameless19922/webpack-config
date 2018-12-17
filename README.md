@@ -6,5 +6,5 @@ Runs a local development server, rebuilds bundles when the source files change, 
 ### `npm run build`
 Builds the app for production to the dist folder.
 
-### `npm run eslint`
+### `npm run lint`
 Lints the JavaScript files in the app directory.

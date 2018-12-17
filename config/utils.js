@@ -4,6 +4,14 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 import { paths } from './consts';
 
+export function parseBool(value) {
+  try {
+    return JSON.parse(value.toString().toLowerCase());
+  } catch (e) {
+    return false;
+  }
+}
+
 export function restModules(...args) {
   if (!Array.isArray(args)) {
     throw new TypeError('`args` must be an array');

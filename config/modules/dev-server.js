@@ -1,20 +1,31 @@
 import Module from '../module';
 import { stats } from '../consts';
+import Watcher from '../watcher';
 
-// у dev-server есть проблемы релоадом html при включенном hmr
-// для hmr реализован свой сервер с dev/hot middleware
-// если необходимости в hmr нет, можно подключать данный модуль
 export default class DevServer extends Module {
   constructor(options) {
     const defaultOptions = {
       compress: true,
-      open: 'Chrome',
+      inline: true,
       overlay: true,
-      port: 3000,
       stats,
     };
 
     super({ ...defaultOptions, ...options });
+
+    if (options.hot) {
+      this.options.before = this.before.bind(this);
+    }
+  }
+
+  before(app, server) {
+    // recompile njk templates after change (for correct HMR)
+    new Watcher([
+      './app/pages/*.njk',
+      './app/components/**/*.njk'
+    ]).on('all', () => {
+      server.sockWrite(server.sockets, 'content-changed');
+    });
   }
 
   get config() {
