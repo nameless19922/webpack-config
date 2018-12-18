@@ -4,6 +4,7 @@ import BaseConfig from './base-config';
 import modules from './modules';
 import { stats } from './consts';
 import { parseBool } from './utils';
+import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
 
 export default class DevelopmentBase extends BaseConfig {
   constructor(options) {
@@ -39,6 +40,8 @@ export default class DevelopmentBase extends BaseConfig {
 
     // styles of source mapping: https://webpack.js.org/configuration/devtool/
     config.devtool = JS_SOURCEMAP || 'cheap-eval-source-map';
+
+    config.plugins.push(new FriendlyErrorsWebpackPlugin());
 
     return config;
   }

@@ -1,9 +1,8 @@
 import path from 'path';
 import webpack from 'webpack';
-import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import SpriteLoaderPlugin from 'svg-sprite-loader/plugin';
-import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
+
 
 import { restModules, generateHtmlPages, parseBool } from './utils';
 import modules from './modules';
@@ -68,7 +67,6 @@ export default class BaseConfig {
       }),
 
       new webpack.ProgressPlugin(),
-      new FriendlyErrorsWebpackPlugin(),
 
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(this.mode),
@@ -93,17 +91,6 @@ export default class BaseConfig {
     return ['node_modules', path.resolve(paths.root, 'config', 'loaders')]
   }
 
-  optimization() {
-    return {
-      minimizer: [
-        new UglifyJsPlugin({
-          cache: true,
-          parallel: true,
-        }),
-      ],
-    };
-  }
-
   config() {
     return {
       context: this.dirs.srcDir,
@@ -124,8 +111,6 @@ export default class BaseConfig {
 
       entry: this.entry(),
       output: this.output(),
-
-      optimization: this.optimization(),
 
       module: {
         rules: this.rules(),

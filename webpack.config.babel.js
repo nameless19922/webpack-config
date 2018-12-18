@@ -1,4 +1,4 @@
-import  { paths, port, stats } from './config/consts';
+import { paths, port, stats } from './config/consts';
 import DevelopmentConfig from './config/development-config';
 import ProductionConfig from './config/production-config';
 

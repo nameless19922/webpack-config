@@ -6,11 +6,14 @@ export const port = process.env.PORT || 3000;
 
 export const paths = {
   root,
+
   app: path.resolve(root, 'app'),
   dist: path.resolve(root, 'dist'),
+
   appJs: './js',
+
+  appNjk: './pages',
   buildJs: './assets/js',
-  buildNjk: './pages',
   buildCss: './assets/css',
 };
 
@@ -20,7 +23,6 @@ export const stats = {
   colors: true,
   chunks: false,
   modules: false,
-  maxModules: 0,
   errors: true,
   warnings: true,
   moduleTrace: true,

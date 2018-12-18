@@ -1,8 +1,7 @@
-const fs = require('fs');
-const path = require('path');
-const nunjucks = require('nunjucks');
+import fs from 'fs';
+import path from 'path';
 
-module.exports = class NjkLoader {
+export default class NjkLoader {
   constructor(context, sourceCallback) {
     this.context = typeof context === 'string' ? context : '.';
     this.sourceCallback = sourceCallback;

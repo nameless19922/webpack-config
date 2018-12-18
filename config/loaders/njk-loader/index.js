@@ -1,9 +1,9 @@
-const nunjucks = require('nunjucks');
-const loaderUtils = require('loader-utils');
+import nunjucks from 'nunjucks';
+import loaderUtils from 'loader-utils';
 
-const NjkLoader = require('./njk-loader');
+import NjkLoader from './njk-loader';
 
-module.exports = function (source) {
+export default function (source) {
   const options = loaderUtils.getOptions(this);
   const callback = this.async();
 
