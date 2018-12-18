@@ -5,6 +5,7 @@ import ProductionConfig from './config/production-config';
 /*
   TODO:
     1. Jest
+    2. Optimization styl, njk
  */
 
 export default (env, argv) => {
