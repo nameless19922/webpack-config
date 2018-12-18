@@ -33,7 +33,6 @@ export default class BaseConfig {
       chunkFilename: `${this.dirs.buildJs}/[name]${this.getMinFilename()}.js`,
       filename: `${this.dirs.buildJs}/[name]${this.getMinFilename()}.js`,
       path: this.dirs.buildDir,
-      pathinfo: true,
     };
   }
 
