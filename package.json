@@ -11,7 +11,8 @@
     "build": "rimraf dist && cross-env ESLINT=true webpack --mode production",
     "lint": "eslint ./app --ext .js",
     "stats": "webpack --profile --mode production --json > ./stats.json",
-    "analyze": "webpack-bundle-analyzer --no-open ./stats.json ./dist"
+    "analyze": "webpack-bundle-analyzer --no-open ./stats.json ./dist",
+    "test": "jest"
   },
   "nodemonConfig": {
     "exec": "webpack-dev-server --mode development",
@@ -32,6 +33,16 @@
     "config",
     "js"
   ],
+  "jest": {
+    "moduleFileExtensions": ["js"],
+    "moduleDirectories": ["node_modules", "<rootDir>/src/"],
+    "testRegex": "(/__tests__/.*(test|spec))\\.(js?)$",
+    "testPathIgnorePatterns": ["/node_modules/"],
+    "verbose": true
+  },
+  "transform": {
+    "^.+\\.js$": "babel-jest"
+  },
   "author": "Dmitry Melikhov",
   "license": "MIT",
   "devDependencies": {
@@ -43,7 +54,9 @@
     "@babel/register": "^7.0.0",
     "@babel/runtime": "^7.2.0",
     "autoprefixer": "^9.3.1",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
     "chokidar": "^2.0.4",
     "cross-env": "^5.2.0",
@@ -53,13 +66,13 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-loader": "^2.1.1",
     "eslint-plugin-import": "^2.14.0",
-    "express": "^4.16.4",
     "file-loader": "^2.0.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "glob": "^7.1.3",
     "html-beautify-webpack-plugin": "^1.0.5",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.6.0",
     "loader-utils": "^1.1.0",
     "mini-css-extract-plugin": "^0.4.5",
     "nodemon": "^1.18.7",
