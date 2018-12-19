@@ -35,6 +35,11 @@ export default class Stylus extends Module {
         loader,
         {
           loader: 'css-loader',
+          options: {
+            importLoaders: 2,
+            modules: false,
+            sourceMap: false,
+          },
         },
         {
           loader: 'postcss-loader',

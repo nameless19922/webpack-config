@@ -9,6 +9,7 @@ export default class Watcher {
       ignoreInitial: true,
       ignorePermissionErrors: true,
       persistent: true,
+      usePolling: true,
     });
   }
 
