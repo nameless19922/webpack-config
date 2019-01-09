@@ -1,10 +1,10 @@
 import webpack from 'webpack';
+import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
 
 import BaseConfig from './base-config';
 import modules from './modules';
 import { stats } from './consts';
 import { parseBool } from './utils';
-import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
 
 export default class DevelopmentBase extends BaseConfig {
   constructor(options) {
