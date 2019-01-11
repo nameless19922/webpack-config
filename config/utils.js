@@ -22,11 +22,11 @@ export function restModules(...args) {
 
 export function getEntries(dir, ext) {
   if (typeof dir !== 'string') {
-    throw new TypeError('`dir` must be an array');
+    throw new TypeError('`dir` must be a string');
   }
 
   if (typeof ext !== 'string') {
-    throw new TypeError('`ext` must be an array');
+    throw new TypeError('`ext` must be a string');
   }
 
   return glob.sync(path.resolve(paths.app, dir, `*${ext}`));

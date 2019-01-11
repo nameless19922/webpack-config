@@ -34,12 +34,10 @@
     "js"
   ],
   "jest": {
-    "moduleFileExtensions": [
-      "js"
-    ],
+    "moduleFileExtensions": ["js"],
     "moduleDirectories": [
       "node_modules",
-      "<rootDir>/src/"
+      "<rootDir>/app/"
     ],
     "testRegex": "(/__tests__/.*(test|spec))\\.(js?)$",
     "testPathIgnorePatterns": [
