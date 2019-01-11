@@ -19,7 +19,7 @@ Generates bundle stats.json
 #### `npm run analyze`
 Renders the size of the output files of a web package with an interactive scalable tree map.
 
-#### Custom Webpack settings
+### Custom Webpack settings
 You can also customize configuration and expand other web package configurations:
 
 ```js
