@@ -21,10 +21,8 @@ Renders the size of the output files of a web package with an interactive scalab
 
 ### Basic usage
 
+`./webpack.config.js`
 ```js
-/*
-  webpack.config.js
-*/
 import Config from './config';
 
 export default new Config('Webpack-Config').merge();
@@ -33,10 +31,8 @@ export default new Config('Webpack-Config').merge();
 ### Custom Webpack settings
 You can also customize configuration and expand other web package configurations:
 
+`./webpack.config.js`
 ```js
-/*
-  webpack.config.js
-*/
 import path from 'path';
 
 import Config from './config';
