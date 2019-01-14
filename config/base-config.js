@@ -59,7 +59,7 @@ export default class BaseConfig {
         filename: `${this.dirs.buildCss}/[name]${this.getMinFilename()}.css`,
       }),
 
-      ...generateHtmlPages(),
+      ...generateHtmlPages(parseBool(process.env.INJECT)),
 
       new SpriteLoaderPlugin({
         plainSprite: true

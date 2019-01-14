@@ -32,14 +32,14 @@ export function getEntries(dir, ext) {
   return glob.sync(path.resolve(paths.app, dir, `*${ext}`));
 }
 
-export function generateHtmlPages() {
+export function generateHtmlPages(inject) {
   const dir = 'pages';
 
   return getEntries(dir, '.njk').map((item) => {
     const filename = path.basename(item, path.extname(item));
 
     return new HtmlWebpackPlugin({
-      inject: true,
+      inject: inject,
       template: `./${dir}/${filename}.njk`,
       filename: `./${filename}.html`,
       // while injecting only app chunk

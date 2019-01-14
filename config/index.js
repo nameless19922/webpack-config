@@ -3,17 +3,15 @@ import DevelopmentConfig from '../config/development-config';
 import ProductionConfig from '../config/production-config';
 
 export default class Config {
-  constructor(mode, name) {
-    if (typeof mode !== 'string') {
-      throw new TypeError('`mode` must be a string');
-    }
-
+  constructor(name = 'Config') {
     if (typeof name !== 'string') {
       throw new TypeError('`name` must be a string');
     }
 
-    this.configInstance = this.generateConfigInstance({
-      name,
+    this.name = name;
+
+    this.configObj = {
+      name: this.name,
       stats,
       dirs: {
         srcDir: paths.app,
@@ -22,15 +20,31 @@ export default class Config {
         buildJs: paths.buildJs,
         buildCss: paths.buildCss,
       },
-      mode,
-    }, mode);
+    };
   }
 
   generateConfigInstance(baseConfig, mode) {
     return mode === 'development' ? new DevelopmentConfig({ ...baseConfig, port }) : new ProductionConfig(baseConfig);
   }
 
-  get config() {
-    return this.configInstance.config();
+  merge(modify) {
+    return (env, argv) => {
+      const { mode } = argv;
+
+      this.configObj = { ...this.configObj, mode };
+      this.configInstance = this.generateConfigInstance(this.configObj, mode);
+
+      let current = this.configInstance.config();
+
+      if (typeof modify === 'function') {
+        const extend = modify(current);
+
+        if (typeof extend === 'object') {
+          current = extend;
+        }
+      }
+
+      return current;
+    }
   }
 }

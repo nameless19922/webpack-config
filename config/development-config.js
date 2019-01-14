@@ -24,11 +24,6 @@ export default class DevelopmentBase extends BaseConfig {
       config.plugins.push(
         new webpack.HotModuleReplacementPlugin(),
       );
-
-      config.entry.app.push = [
-        `webpack-dev-server/client?http://localhost:${this.port}`,
-        'webpack/hot/only-dev-server',
-      ];
     }
 
     config.devServer = new modules.DevServer({
