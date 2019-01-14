@@ -19,21 +19,34 @@ Generates bundle stats.json
 #### `npm run analyze`
 Renders the size of the output files of a web package with an interactive scalable tree map.
 
+### Basic usage
+
+```js
+/*
+  webpack.config.js
+*/
+import Config from './config';
+
+export default new Config('Webpack-Config').merge();
+```
+
 ### Custom Webpack settings
 You can also customize configuration and expand other web package configurations:
 
 ```js
-import Config from './config';
+/*
+  webpack.config.js
+*/
+import path from 'path';
 
-export default (env, argv) =>  {
-  const config = new Config(argv.mode, 'Webpack-Config').config;
-  
-  config.output = {
-    ...config.output,
-    
-    path: '/build',
-  };
-  
+import Config from './config';
+import { getEntries } from "./config/utils";
+
+export default new Config('Webpack-Config').merge((config) => {
+  config.entry = {};
+  // get all entries from dir
+  getEntries('js', '.js').forEach(item => config.entry[path.basename(item, path.extname(item))] = item);
+
   return config;
-}
+});
 ```
