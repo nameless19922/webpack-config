@@ -5,7 +5,7 @@ import SpriteLoaderPlugin from 'svg-sprite-loader/plugin';
 
 
 import { restModules, generateHtmlPages, parseBool } from './utils';
-import modules from './modules';
+import loaders from './loaders';
 import { paths } from './consts';
 
 export default class BaseConfig {
@@ -37,20 +37,20 @@ export default class BaseConfig {
   }
 
   rules() {
-    const modulesList = [
-      new modules.Babel(),
-      new modules.Nunjucks(),
-      new modules.Static(),
-      new modules.Svg(),
-      new modules.Sprite(),
-      new modules.Stylus(),
+    const loadersList = [
+      new loaders.Babel(),
+      new loaders.Nunjucks(),
+      new loaders.Static(),
+      new loaders.Svg(),
+      new loaders.Sprite(),
+      new loaders.Stylus(),
     ];
 
     if (parseBool(process.env.ESLINT)) {
-      modulesList.unshift(new modules.Eslint());
+      loadersList.unshift(new loaders.Eslint());
     }
 
-    return restModules(...modulesList);
+    return restModules(...loadersList);
   }
 
   plugins() {
@@ -87,7 +87,7 @@ export default class BaseConfig {
   }
 
   modules() {
-    return ['node_modules', path.resolve(paths.root, 'config', 'loaders')]
+    return ['node_modules', path.resolve(paths.root, 'config', 'loaders-src')]
   }
 
   config() {

@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
 
 import BaseConfig from './base-config';
-import modules from './modules';
+import DevServer from './server/dev-server';
 import { stats } from './consts';
 import { parseBool } from './utils';
 
@@ -26,7 +26,7 @@ export default class DevelopmentBase extends BaseConfig {
       );
     }
 
-    config.devServer = new modules.DevServer({
+    config.devServer = new DevServer({
       hot,
       open,
       port: this.port,

@@ -37,12 +37,10 @@
     "moduleFileExtensions": ["js"],
     "moduleDirectories": [
       "node_modules",
-      "<rootDir>/app/"
+      "<rootDir>"
     ],
     "testRegex": "(/__tests__/.*(test|spec))\\.(js?)$",
-    "testPathIgnorePatterns": [
-      "/node_modules/"
-    ],
+    "testPathIgnorePatterns": ["/node_modules/"],
     "verbose": true
   },
   "transform": {
