@@ -5,10 +5,6 @@ import { readFileSync } from 'fs';
 import BaseConfig from './base-config';
 
 export default class ProductionBase extends BaseConfig {
-  constructor(options) {
-    super(options);
-  }
-
   optimization() {
     return {
       minimizer: [
@@ -40,4 +36,4 @@ export default class ProductionBase extends BaseConfig {
 
     return config;
   }
-};
+}

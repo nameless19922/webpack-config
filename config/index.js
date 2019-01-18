@@ -1,6 +1,6 @@
-import { paths, port, stats } from '../config/consts';
-import DevelopmentConfig from '../config/development-config';
-import ProductionConfig from '../config/production-config';
+import { paths, port, stats } from './consts';
+import DevelopmentConfig from './development-config';
+import ProductionConfig from './production-config';
 
 export default class Config {
   constructor(name = 'Config') {
@@ -45,6 +45,6 @@ export default class Config {
       }
 
       return current;
-    }
+    };
   }
 }

@@ -40,4 +40,4 @@ export default class DevelopmentBase extends BaseConfig {
 
     return config;
   }
-};
+}

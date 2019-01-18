@@ -39,7 +39,7 @@ export function generateHtmlPages(inject) {
     const filename = path.basename(item, path.extname(item));
 
     return new HtmlWebpackPlugin({
-      inject: inject,
+      inject,
       template: `./${dir}/${filename}.njk`,
       filename: `./${filename}.html`,
       // while injecting only app chunk

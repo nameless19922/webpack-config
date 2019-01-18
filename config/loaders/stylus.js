@@ -58,4 +58,4 @@ export default class Stylus extends Loader {
   get config() {
     return this.options;
   }
-};
+}

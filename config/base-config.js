@@ -62,7 +62,7 @@ export default class BaseConfig {
       ...generateHtmlPages(parseBool(process.env.INJECT)),
 
       new SpriteLoaderPlugin({
-        plainSprite: true
+        plainSprite: true,
       }),
 
       new webpack.ProgressPlugin(),
@@ -87,7 +87,7 @@ export default class BaseConfig {
   }
 
   modules() {
-    return ['node_modules', path.resolve(paths.root, 'config', 'loaders-src')]
+    return ['node_modules', path.resolve(paths.root, 'config', 'loaders-src')];
   }
 
   config() {
@@ -105,7 +105,7 @@ export default class BaseConfig {
       },
 
       resolveLoader: {
-        modules: this.modules()
+        modules: this.modules(),
       },
 
       entry: this.entry(),
@@ -117,4 +117,4 @@ export default class BaseConfig {
       plugins: this.plugins(),
     };
   }
-};
+}

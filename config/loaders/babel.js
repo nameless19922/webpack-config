@@ -12,7 +12,7 @@ export default class Babel extends Loader {
             cacheDirectory: true,
           },
         },
-      ]
+      ],
     };
 
     super({ ...defaultOptions, ...options });

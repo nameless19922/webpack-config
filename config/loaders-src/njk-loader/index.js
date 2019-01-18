@@ -8,10 +8,7 @@ export default function (source) {
   const callback = this.async();
 
   const env = new nunjucks.Environment(
-    new NjkLoader(
-      options.root,
-      function (path) { this.addDependency(path) }.bind(this),
-    ),
+    new NjkLoader(options.root, path => this.addDependency(path)),
   );
   nunjucks.configure(null, {
     watch: false,
@@ -19,7 +16,7 @@ export default function (source) {
 
   const compiled = nunjucks.compile(source, env);
 
-  compiled.render(typeof options.data === 'object' ? options.data : {} , (err, res) => {
+  compiled.render(typeof options.data === 'object' ? options.data : {}, (err, res) => {
     if (err) {
       this.emitError(err);
     }

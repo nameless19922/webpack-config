@@ -22,7 +22,7 @@ export default class DevServer extends Module {
     // recompile njk templates after change (for correct HMR)
     new Watcher([
       './app/pages/*.njk',
-      './app/components/**/*.njk'
+      './app/components/**/*.njk',
     ]).on('all', () => {
       server.sockWrite(server.sockets, 'content-changed');
     });
