@@ -1,6 +1,6 @@
 {
   "name": "webpack-config",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Webpack 4 configuration for static projects",
   "repository": {
     "type": "git",
@@ -34,13 +34,17 @@
     "js"
   ],
   "jest": {
-    "moduleFileExtensions": ["js"],
+    "moduleFileExtensions": [
+      "js"
+    ],
     "moduleDirectories": [
       "node_modules",
       "<rootDir>"
     ],
     "testRegex": "(/__tests__/.*(test|spec))\\.(js?)$",
-    "testPathIgnorePatterns": ["/node_modules/"],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
     "verbose": true
   },
   "transform": {
