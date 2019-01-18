@@ -1,3 +1,12 @@
+<a name="1.2.3"></a>
+### 1.2.3 (2019-01-18)
+
+
+#### Bug Fixes
+
+* **.travis.yml:** script lint ([0b19e67b](https://github.com/nameless19922/webpack-config.git/commit/0b19e67b))
+
+
 <a name="1.2.2"></a>
 ### 1.2.2 (2019-01-18)
 
