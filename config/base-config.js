@@ -5,7 +5,6 @@ const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 const { restModules, generateHtmlPages, parseBool } = require('./utils');
 const loaders = require('./loaders');
-const { paths } = require('./consts');
 
 module.exports = class BaseConfig {
   constructor(options) {

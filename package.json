@@ -10,7 +10,7 @@
     "start": "cross-env ESLINT=true HMR=true INJECT=true nodemon -L",
     "build": "rimraf dist && cross-env ESLINT=true INJECT=true webpack --mode production",
     "clean": "rimraf dist",
-    "lint": "eslint . --ext .js",
+    "lint": "eslint ./config --ext .js",
     "stats": "webpack --profile --mode production --json > ./stats.json",
     "analyze": "webpack-bundle-analyzer --no-open ./stats.json ./dist",
     "test": "jest"
