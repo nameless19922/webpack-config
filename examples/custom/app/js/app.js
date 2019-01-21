@@ -1,13 +1,14 @@
 import 'core-js/fn/object/assign';
 import 'core-js/fn/promise';
-import svg4everybody from 'svg4everybody';
+import 'core-js/fn/symbol/';
 
+import Application from './application';
 import '@/stylus/app';
 
-$(() => {
-  svg4everybody();
-});
+(function () {
+  new Application('header').run();
 
-if (module.hot) {
-  module.hot.accept();
-}
+  if (module.hot) {
+    module.hot.accept();
+  }
+}());

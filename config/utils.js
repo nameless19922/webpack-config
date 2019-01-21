@@ -42,7 +42,7 @@ function generateHtmlPages(inject) {
       inject,
       template: `./${dir}/${filename}.njk`,
       filename: `./${filename}.html`,
-      // while injecting only app chunk
+      // while injecting only application chunk
       chunks: ['app'],
       hash: true,
     });

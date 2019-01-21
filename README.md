@@ -46,7 +46,7 @@ Builds the app for production to the dist folder.
 │   ├── componenets/           # componenets
 │   │   └── component/         # component
 │   │       ├── component.njk  # component markup
-│   │       ├── component.js   # component script
+│   │       ├── base.js   # component script
 │   │       └── component.styl # component styles
 │   ├── pages/                 # pages
 │   │   └── index.njk          # page markup

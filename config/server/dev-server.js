@@ -21,8 +21,8 @@ module.exports = class DevServer extends Loader {
   before(app, server) {
     // recompile njk templates after change (for correct HMR)
     new Watcher([
-      './app/pages/*.njk',
-      './app/components/**/*.njk',
+      './application/pages/*.njk',
+      './application/components/**/*.njk',
     ]).on('all', () => {
       server.sockWrite(server.sockets, 'content-changed');
     });
