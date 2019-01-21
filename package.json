@@ -1,6 +1,6 @@
 {
   "name": "webpack-config",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Webpack 4 configuration for static projects",
   "repository": {
     "type": "git",
