@@ -2,30 +2,13 @@
 
 ## Usage
 
-### NPM scripts
-
-#### `npm start`
-Runs a local development server, rebuilds bundles when the source files change, and live-reload in the browser.
-
-#### `npm run build`
-Builds the app for production to the dist folder.
-
-#### `npm run lint`
-Lints the JavaScript files in the app directory.
-
-#### `npm run stats`
-Generates bundle stats.json
-
-#### `npm run analyze`
-Renders the size of the output files of a web package with an interactive scalable tree map.
-
 ### Basic usage
 
 `./webpack.config.js`
 ```js
-import Config from './config';
+const Config = require('../../config/index');
 
-export default new Config('Webpack-Config').merge();
+module.exports = new Config('Webpack-Config').merge();
 ```
 
 ### Custom Webpack settings
@@ -33,12 +16,12 @@ You can also customize configuration and expand other web package configurations
 
 `./webpack.config.js`
 ```js
-import path from 'path';
+const path = require('path');
 
-import Config from './config';
-import { getEntries } from "./config/utils";
+const Config = require('../../config/index');
+const { getEntries } = require('../../config/utils');
 
-export default new Config('Webpack-Config').merge((config) => {
+module.exports = new Config('Webpack-Config').merge((config) => {
   config.entry = {};
   // get all entries from dir
   getEntries('js', '.js').forEach(item => config.entry[path.basename(item, path.extname(item))] = item);
@@ -46,3 +29,11 @@ export default new Config('Webpack-Config').merge((config) => {
   return config;
 });
 ```
+
+### base npm-scripts
+
+#### `npm start`
+Runs a local development server, rebuilds bundles when the source files change, and live-reload in the browser.
+
+#### `npm run build`
+Builds the app for production to the dist folder.
