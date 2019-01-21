@@ -1,3 +1,12 @@
+<a name="1.3.1"></a>
+### 1.3.1 (2019-01-21)
+
+
+#### Bug Fixes
+
+* linter errors ([d90c5329](https://github.com/nameless19922/webpack-config.git/commit/d90c5329))
+
+
 <a name="1.3.0"></a>
 ## 1.3.0 (2019-01-21)
 
