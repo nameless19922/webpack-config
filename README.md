@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/nameless19922/webpack-config.svg?branch=master)](https://travis-ci.org/nameless19922/webpack-config)
+
 # Webpack-Config
 
 ## Usage
