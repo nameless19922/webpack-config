@@ -39,3 +39,35 @@ Runs a local development server, rebuilds bundles when the source files change, 
 
 #### `npm run build`
 Builds the app for production to the dist folder.
+
+## Project structure
+```
+├── app/                       # source
+│   ├── componenets/           # componenets
+│   │   └── component/         # component
+│   │       ├── component.njk  # component markup
+│   │       ├── component.js   # component script
+│   │       └── component.styl # component styles
+│   ├── pages/                 # pages
+│   │   └── index.njk          # page markup
+│   ├── icons/                 # svg icons for sprite
+│   ├── resources/             # static files
+│   ├── js/                    # js
+│   │   └── app.js             # main script
+│   └── stylus/                # styles
+│       ├── helpers/           # helpers
+│       │   ├── fonts.styl     # fonts
+│       │   ├── normalize.styl # reset styles
+│       │   ├── scaffold.styl  # base styles
+│       │   └── variables.styl # styl variables
+│       └── app.styl           # main stylus file
+├── dist/                      # build
+│   ├── assets/                # resources
+│   │   ├── fonts/             # fonts
+│   │   ├── images/            # images
+│   │   ├── js/                # js
+│   │   └── css/               # css
+│   └── index.html             # page
+├── data.json                  # eslint configuration
+└── webpack.config.js          # webpack configuration
+```
