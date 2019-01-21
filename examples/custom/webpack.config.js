@@ -1,6 +1,6 @@
 const path = require('path');
 
-const Config = require('../../config/index');
+const Config = require('../../config');
 const { getEntries } = require('../../config/utils');
 
 module.exports = new Config('Webpack-Config').merge((config) => {

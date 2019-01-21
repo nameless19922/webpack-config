@@ -1,8 +1,8 @@
 {
   "name": "webpack-config-simple-example",
   "scripts": {
-    "start": "cross-env ESLINT=true HMR=true INJECT=true webpack-dev-server --mode development",
-    "build": "rimraf dist && cross-env ESLINT=true INJECT=true webpack --mode production"
+    "start": "cross-env INJECT=true webpack-dev-server --mode development",
+    "build": "rimraf dist && cross-env INJECT=true webpack --mode production"
   },
   "keywords": [
     "webpack",
@@ -16,10 +16,5 @@
     "rimraf": "^2.6.2",
     "webpack": "^4.25.1",
     "webpack-dev-server": "^3.1.11"
-  },
-  "dependencies": {
-    "core-js": "^2.6.0",
-    "jquery": "^3.3.1",
-    "svg4everybody": "^2.1.9"
   }
 }
