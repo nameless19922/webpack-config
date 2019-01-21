@@ -43,10 +43,10 @@ Builds the app for production to the dist folder.
 ## Project structure
 ```
 ├── app/                       # source
-│   ├── componenets/           # componenets
+│   ├── components/           # componenets
 │   │   └── component/         # component
 │   │       ├── component.njk  # component markup
-│   │       ├── base.js   # component script
+│   │       ├── component.js   # component script
 │   │       └── component.styl # component styles
 │   ├── pages/                 # pages
 │   │   └── index.njk          # page markup
