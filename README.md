@@ -32,7 +32,7 @@ module.exports = new Config('Webpack-Config').merge((config) => {
 });
 ```
 
-### base npm-scripts
+### Base npm-scripts
 
 #### `npm start`
 Runs a local development server, rebuilds bundles when the source files change, and live-reload in the browser.
@@ -68,6 +68,6 @@ Builds the app for production to the dist folder.
 │   │   ├── js/                # js
 │   │   └── css/               # css
 │   └── index.html             # page
-├── data.json                  # eslint configuration
+├── data.json                  # data in json format
 └── webpack.config.js          # webpack configuration
 ```
