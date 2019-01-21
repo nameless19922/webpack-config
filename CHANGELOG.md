@@ -1,3 +1,12 @@
+<a name="1.3.0"></a>
+## 1.3.0 (2019-01-21)
+
+
+#### Features
+
+* examples dir ([a6eeeb13](https://github.com/nameless19922/webpack-config.git/commit/a6eeeb13))
+
+
 <a name="1.2.3"></a>
 ### 1.2.3 (2019-01-18)
 
