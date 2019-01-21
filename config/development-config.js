@@ -1,12 +1,12 @@
-import webpack from 'webpack';
-import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
+const webpack = require('webpack');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
-import BaseConfig from './base-config';
-import DevServer from './server/dev-server';
-import { stats } from './consts';
-import { parseBool } from './utils';
+const BaseConfig = require('./base-config');
+const DevServer = require('./server/dev-server');
+const { stats } = require('./consts');
+const { parseBool } = require('./utils');
 
-export default class DevelopmentBase extends BaseConfig {
+module.exports = class DevelopmentBase extends BaseConfig {
   constructor(options) {
     super(options);
 
@@ -40,4 +40,4 @@ export default class DevelopmentBase extends BaseConfig {
 
     return config;
   }
-}
+};

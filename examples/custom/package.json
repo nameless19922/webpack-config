@@ -1,0 +1,31 @@
+{
+  "name": "webpack-config-custom-example",
+  "scripts": {
+    "start": "cross-env ESLINT=true HMR=true INJECT=true webpack-dev-server --mode development",
+    "build": "rimraf dist && cross-env ESLINT=true INJECT=true webpack --mode production",
+    "clean": "rimraf dist",
+    "lint": "eslint ./app --ext .js",
+    "stats": "webpack --profile --mode production --json > ./stats.json",
+    "analyze": "webpack-bundle-analyzer --no-open ./stats.json ./dist"
+  },
+  "keywords": [
+    "webpack",
+    "config",
+    "js"
+  ],
+  "author": "Dmitry Melikhov",
+  "license": "MIT",
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "eslint": "^5.9.0",
+    "rimraf": "^2.6.2",
+    "webpack": "^4.25.1",
+    "webpack-bundle-analyzer": "^3.0.3",
+    "webpack-dev-server": "^3.1.11"
+  },
+  "dependencies": {
+    "core-js": "^2.6.0",
+    "jquery": "^3.3.1",
+    "svg4everybody": "^2.1.9"
+  }
+}

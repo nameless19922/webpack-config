@@ -1,6 +1,6 @@
-import Loader from '../loader';
+const Loader = require('../loader');
 
-export default class Eslint extends Loader {
+module.exports = class Eslint extends Loader {
   constructor(options) {
     const defaultOptions = {
       enforce: 'pre',
@@ -18,4 +18,4 @@ export default class Eslint extends Loader {
   get config() {
     return this.options;
   }
-}
+};

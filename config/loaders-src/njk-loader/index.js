@@ -1,18 +1,17 @@
-import nunjucks from 'nunjucks';
-import loaderUtils from 'loader-utils';
+const nunjucks = require('nunjucks');
+const loaderUtils = require('loader-utils');
 
-import NjkLoader from './njk-loader';
+const NjkLoader = require('./njk-loader');
 
-export default function (source) {
+module.exports = function (source) {
   const options = loaderUtils.getOptions(this);
   const callback = this.async();
 
   const env = new nunjucks.Environment(
     new NjkLoader(options.root, path => this.addDependency(path)),
   );
-  nunjucks.configure(null, {
-    watch: false,
-  });
+
+  nunjucks.configure(null, { watch: false });
 
   const compiled = nunjucks.compile(source, env);
 
@@ -23,4 +22,4 @@ export default function (source) {
 
     callback(null, res);
   });
-}
+};

@@ -1,6 +1,6 @@
-import chokidar from 'chokidar';
+const chokidar = require('chokidar');
 
-export default class Watcher {
+module.exports = class Watcher {
   constructor(files) {
     this.watcher = chokidar.watch(files, {
       alwaysStat: true,
@@ -20,4 +20,4 @@ export default class Watcher {
       }
     });
   }
-}
+};

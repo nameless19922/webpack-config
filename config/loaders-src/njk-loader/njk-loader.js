@@ -1,7 +1,7 @@
-import fs from 'fs';
-import path from 'path';
+const fs = require('fs');
+const path = require('path');
 
-export default class NjkLoader {
+module.exports = class NjkLoader {
   constructor(context, sourceCallback) {
     this.context = typeof context === 'string' ? context : '.';
     this.sourceCallback = sourceCallback;
@@ -17,4 +17,4 @@ export default class NjkLoader {
       path: completePath,
     };
   }
-}
+};

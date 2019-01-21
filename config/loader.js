@@ -1,4 +1,4 @@
-export default class Loader {
+module.exports = class Loader {
   constructor(options = {}) {
     if (typeof options !== 'object') {
       throw new TypeError('`options` must be an object');
@@ -10,4 +10,4 @@ export default class Loader {
   get config() {
     return this.options;
   }
-}
+};

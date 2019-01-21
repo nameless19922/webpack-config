@@ -1,9 +1,9 @@
-import path from 'path';
+const path = require('path');
 
-import Loader from '../loader';
-import { paths } from '../consts';
+const Loader = require('../loader');
+const { paths } = require('../consts');
 
-export default class Static extends Loader {
+module.exports = class Static extends Loader {
   constructor(options) {
     const defaultOptions = {
       test: /\.(png|jpg|gif|woff|woff2)$/,
@@ -24,4 +24,4 @@ export default class Static extends Loader {
   get config() {
     return this.options;
   }
-}
+};

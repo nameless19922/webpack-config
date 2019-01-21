@@ -1,10 +1,10 @@
-import HtmlBeautifyPlugin from 'html-beautify-webpack-plugin';
-import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
-import { readFileSync } from 'fs';
+const { readFileSync } = require('fs');
+const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-import BaseConfig from './base-config';
+const BaseConfig = require('./base-config');
 
-export default class ProductionBase extends BaseConfig {
+module.exports = class ProductionBase extends BaseConfig {
   optimization() {
     return {
       minimizer: [
@@ -36,4 +36,4 @@ export default class ProductionBase extends BaseConfig {
 
     return config;
   }
-}
+};

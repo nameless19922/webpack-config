@@ -1,14 +1,13 @@
-import path from 'path';
-import webpack from 'webpack';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import SpriteLoaderPlugin from 'svg-sprite-loader/plugin';
+const path = require('path');
+const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
+const { restModules, generateHtmlPages, parseBool } = require('./utils');
+const loaders = require('./loaders');
+const { paths } = require('./consts');
 
-import { restModules, generateHtmlPages, parseBool } from './utils';
-import loaders from './loaders';
-import { paths } from './consts';
-
-export default class BaseConfig {
+module.exports = class BaseConfig {
   constructor(options) {
     this.name = options.name;
     this.mode = options.mode;
@@ -87,7 +86,7 @@ export default class BaseConfig {
   }
 
   modules() {
-    return ['node_modules', path.resolve(paths.root, 'config', 'loaders-src')];
+    return ['node_modules', path.resolve(__dirname, 'loaders-src')];
   }
 
   config() {
@@ -117,4 +116,4 @@ export default class BaseConfig {
       plugins: this.plugins(),
     };
   }
-}
+};

@@ -1,6 +1,6 @@
-import Loader from '../loader';
+const Loader = require('../loader');
 
-export default class Babel extends Loader {
+module.exports = class Babel extends Loader {
   constructor(options) {
     const defaultOptions = {
       test: /\.js$/,
@@ -21,4 +21,4 @@ export default class Babel extends Loader {
   get config() {
     return this.options;
   }
-}
+};

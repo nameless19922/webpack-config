@@ -1,8 +1,8 @@
-import Module from '../loader';
-import { stats } from '../consts';
-import Watcher from '../watcher';
+const Loader = require('../loader');
+const { stats } = require('../consts');
+const Watcher = require('../watcher');
 
-export default class DevServer extends Module {
+module.exports = class DevServer extends Loader {
   constructor(options) {
     const defaultOptions = {
       compress: true,
@@ -31,4 +31,4 @@ export default class DevServer extends Module {
   get config() {
     return this.options;
   }
-}
+};

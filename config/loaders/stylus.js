@@ -1,8 +1,8 @@
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-import Loader from '../loader';
+const Loader = require('../loader');
 
-export default class Stylus extends Loader {
+module.exports = class Stylus extends Loader {
   constructor(options) {
     const postcssPlugins = [
       require('autoprefixer'),
@@ -58,4 +58,4 @@ export default class Stylus extends Loader {
   get config() {
     return this.options;
   }
-}
+};

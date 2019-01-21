@@ -9,7 +9,8 @@
   "scripts": {
     "start": "cross-env ESLINT=true HMR=true INJECT=true nodemon -L",
     "build": "rimraf dist && cross-env ESLINT=true INJECT=true webpack --mode production",
-    "lint": "eslint ./app --ext .js",
+    "clean": "rimraf dist",
+    "lint": "eslint . --ext .js",
     "stats": "webpack --profile --mode production --json > ./stats.json",
     "analyze": "webpack-bundle-analyzer --no-open ./stats.json ./dist",
     "test": "jest"
@@ -24,7 +25,7 @@
     "verbose": true,
     "watch": [
       "config",
-      "webpack.config.babel.js"
+      "webpack.config.js"
     ],
     "ext": "js json"
   },
@@ -47,14 +48,10 @@
     ],
     "verbose": true
   },
-  "transform": {
-    "^.+\\.js$": "babel-jest"
-  },
   "author": "Dmitry Melikhov",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.1.6",
-    "@babel/node": "^7.2.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.2.0",
     "@babel/preset-env": "^7.1.6",
@@ -63,7 +60,6 @@
     "autoprefixer": "^9.3.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
-    "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
     "chokidar": "^2.0.4",
     "cross-env": "^5.2.0",
@@ -97,10 +93,5 @@
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.11"
-  },
-  "dependencies": {
-    "core-js": "^2.6.0",
-    "jquery": "^3.3.1",
-    "svg4everybody": "^2.1.9"
   }
 }

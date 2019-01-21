@@ -1,8 +1,8 @@
-import { paths, port, stats } from './consts';
-import DevelopmentConfig from './development-config';
-import ProductionConfig from './production-config';
+const { paths, port, stats } = require('./consts');
+const DevelopmentConfig = require('./development-config');
+const ProductionConfig = require('./production-config');
 
-export default class Config {
+module.exports = class Config {
   constructor(name = 'Config') {
     if (typeof name !== 'string') {
       throw new TypeError('`name` must be a string');
@@ -47,4 +47,4 @@ export default class Config {
       return current;
     };
   }
-}
+};

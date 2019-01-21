@@ -1,9 +1,9 @@
-import path from 'path';
+const path = require('path');
 
-import { paths } from '../consts';
-import Loader from '../loader';
+const Loader = require('../loader');
+const { paths } = require('../consts');
 
-export default class Svg extends Loader {
+module.exports = class Svg extends Loader {
   constructor(options) {
     const defaultOptions = {
       test: /\.(svg)$/,
@@ -24,4 +24,4 @@ export default class Svg extends Loader {
   get config() {
     return this.options;
   }
-}
+};

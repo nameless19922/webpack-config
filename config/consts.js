@@ -1,10 +1,10 @@
-import path from 'path';
+const path = require('path');
 
 const root = process.cwd();
 
-export const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
-export const paths = {
+const paths = {
   root,
 
   app: path.resolve(root, 'app'),
@@ -17,7 +17,7 @@ export const paths = {
   buildCss: './assets/css',
 };
 
-export const stats = {
+const stats = {
   all: false,
   assets: true,
   colors: true,
@@ -28,3 +28,5 @@ export const stats = {
   moduleTrace: true,
   errorDetails: true,
 };
+
+module.exports = { port, paths, stats };

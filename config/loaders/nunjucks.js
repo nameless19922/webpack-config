@@ -1,10 +1,10 @@
-import path from 'path';
-import { readFileSync } from 'fs';
+const path = require('path');
+const { readFileSync } = require('fs');
 
-import Loader from '../loader';
-import { paths } from '../consts';
+const Loader = require('../loader');
+const { paths } = require('../consts');
 
-export default class Nunjucks extends Loader {
+module.exports = class Nunjucks extends Loader {
   constructor(options) {
     const defaultOptions = {
       test: /\.(html|njk)$/,
@@ -31,4 +31,4 @@ export default class Nunjucks extends Loader {
   get config() {
     return this.options;
   }
-}
+};

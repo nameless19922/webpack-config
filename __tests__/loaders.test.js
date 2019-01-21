@@ -1,9 +1,9 @@
-import Babel from '../config/loaders/babel';
-import Stylus from '../config/loaders/stylus';
-import Nunjucks from '../config/loaders/nunjucks';
-import Static from '../config/loaders/static';
-import Svg from '../config/loaders/svg';
-import Sprite from '../config/loaders/sprite';
+const Babel = require('../config/loaders/babel');
+const Stylus = require('../config/loaders/stylus');
+const Nunjucks = require('../config/loaders/nunjucks');
+const Static = require('../config/loaders/static');
+const Svg = require('../config/loaders/svg');
+const Sprite = require('../config/loaders/sprite');
 
 describe('loaders', () => {
   it('should test for .js extensions when using the js loader', () => {

@@ -1,10 +1,10 @@
-import path from 'path';
-import glob from 'glob';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+const path = require('path');
+const glob = require('glob');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-import { paths } from './consts';
+const { paths } = require('./consts');
 
-export function parseBool(value) {
+function parseBool(value) {
   try {
     return JSON.parse(value.toString().toLowerCase());
   } catch (e) {
@@ -12,7 +12,7 @@ export function parseBool(value) {
   }
 }
 
-export function restModules(...args) {
+function restModules(...args) {
   if (!Array.isArray(args)) {
     throw new TypeError('`args` must be an array');
   }
@@ -20,7 +20,7 @@ export function restModules(...args) {
   return args.map(item => item.config);
 }
 
-export function getEntries(dir, ext) {
+function getEntries(dir, ext) {
   if (typeof dir !== 'string') {
     throw new TypeError('`dir` must be a string');
   }
@@ -32,7 +32,7 @@ export function getEntries(dir, ext) {
   return glob.sync(path.resolve(paths.app, dir, `*${ext}`));
 }
 
-export function generateHtmlPages(inject) {
+function generateHtmlPages(inject) {
   const dir = 'pages';
 
   return getEntries(dir, '.njk').map((item) => {
@@ -48,3 +48,7 @@ export function generateHtmlPages(inject) {
     });
   });
 }
+
+module.exports = {
+  parseBool, restModules, getEntries, generateHtmlPages,
+};
