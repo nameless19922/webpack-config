@@ -1,3 +1,18 @@
+<a name="1.3.2"></a>
+### 1.3.2 (2019-01-24)
+
+
+#### Bug Fixes
+
+* nunjucks eslint errors ([db7b7c09](https://github.com/nameless19922/webpack-config.git/commit/db7b7c09))
+* nunjucks data.json ([aa9a4134](https://github.com/nameless19922/webpack-config.git/commit/aa9a4134))
+
+
+#### Features
+
+* custom example ([53cb2986](https://github.com/nameless19922/webpack-config.git/commit/53cb2986))
+
+
 <a name="1.3.1"></a>
 ### 1.3.1 (2019-01-21)
 
