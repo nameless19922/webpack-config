@@ -28,8 +28,8 @@ module.exports = class BaseConfig {
 
   output() {
     return {
-      chunkFilename: `${this.dirs.buildJs}/[name]${this.getMinFilename()}.js`,
-      filename: `${this.dirs.buildJs}/[name]${this.getMinFilename()}.js`,
+      chunkFilename: `${this.dirs.assets}/${this.dirs.srcJs}/[name]${this.getMinFilename()}.js`,
+      filename: `${this.dirs.assets}/${this.dirs.srcJs}/[name]${this.getMinFilename()}.js`,
       path: this.dirs.buildDir,
     };
   }
@@ -54,7 +54,7 @@ module.exports = class BaseConfig {
   plugins() {
     return [
       new MiniCssExtractPlugin({
-        filename: `${this.dirs.buildCss}/[name]${this.getMinFilename()}.css`,
+        filename: `${this.dirs.assets}/${this.dirs.srcCss}/[name]${this.getMinFilename()}.css`,
       }),
 
       ...generateHtmlPages(parseBool(process.env.INJECT)),

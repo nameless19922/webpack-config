@@ -15,10 +15,10 @@ module.exports = class Config {
       stats,
       dirs: {
         srcDir: paths.app,
-        srcJs: paths.appJs,
         buildDir: paths.dist,
-        buildJs: paths.buildJs,
-        buildCss: paths.buildCss,
+        assets: paths.assets,
+        srcJs: paths.js,
+        srcCss: paths.css,
       },
     };
   }
@@ -37,7 +37,7 @@ module.exports = class Config {
       let current = this.configInstance.config();
 
       if (typeof modify === 'function') {
-        const extend = modify(current);
+        const extend = modify(current, env, argv);
 
         if (typeof extend === 'object') {
           current = extend;

@@ -10,11 +10,9 @@ const paths = {
   app: path.resolve(root, 'app'),
   dist: path.resolve(root, 'dist'),
 
-  appJs: './js',
-
-  appNjk: './pages',
-  buildJs: './assets/js',
-  buildCss: './assets/css',
+  js: 'js',
+  css: 'css',
+  assets: 'assets',
 };
 
 const stats = {

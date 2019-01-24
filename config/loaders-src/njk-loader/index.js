@@ -3,7 +3,7 @@ const loaderUtils = require('loader-utils');
 
 const NjkLoader = require('./njk-loader');
 
-module.exports = function (source) {
+function loader(source) {
   const options = loaderUtils.getOptions(this);
   const callback = this.async();
 
@@ -22,4 +22,6 @@ module.exports = function (source) {
 
     callback(null, res);
   });
-};
+}
+
+module.exports = loader;
