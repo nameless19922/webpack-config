@@ -1,7 +1,7 @@
 const Loader = require('../loader');
 
 module.exports = class Eslint extends Loader {
-  constructor(options) {
+  constructor(options = {}) {
     const defaultOptions = {
       enforce: 'pre',
       test: /\.js$/,

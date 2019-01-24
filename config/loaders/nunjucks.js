@@ -1,11 +1,11 @@
 const path = require('path');
-const { readFileSync } = require('fs');
 
 const Loader = require('../loader');
 const { paths } = require('../consts');
+const { getJsonFromFile } = require('../utils');
 
 module.exports = class Nunjucks extends Loader {
-  constructor(options) {
+  constructor(options = {}) {
     const defaultOptions = {
       test: /\.(html|njk)$/,
       use: [
@@ -17,15 +17,26 @@ module.exports = class Nunjucks extends Loader {
         },
         {
           loader: 'njk-loader',
-          options: {
-            root: path.resolve(paths.app, 'components'),
-            data: JSON.parse(readFileSync('./data.json')),
-          },
+          options: Nunjucks.createNjkOpts('./data.json'),
         },
       ],
     };
 
     super({ ...defaultOptions, ...options });
+  }
+
+  static createNjkOpts(pathfile) {
+    const data = getJsonFromFile(pathfile);
+    
+    let njkOptions = {
+      root: path.resolve(paths.app, 'components'),
+    };
+
+    if (data !== null) {
+      njkOptions = { ...njkOptions, data };
+    }
+
+    return njkOptions;
   }
 
   get config() {

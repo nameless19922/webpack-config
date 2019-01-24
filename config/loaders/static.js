@@ -4,7 +4,7 @@ const Loader = require('../loader');
 const { paths } = require('../consts');
 
 module.exports = class Static extends Loader {
-  constructor(options) {
+  constructor(options = {}) {
     const defaultOptions = {
       test: /\.(png|jpg|gif|woff|woff2)$/,
       use: [

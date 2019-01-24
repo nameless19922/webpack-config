@@ -1,6 +1,7 @@
 const path = require('path');
 const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { readFileSync } = require('fs');
 
 const { paths } = require('./consts');
 
@@ -10,6 +11,14 @@ function parseBool(value) {
   } catch (e) {
     return false;
   }
+}
+
+function getJsonFromFile(path) {
+  try {
+    return JSON.parse(readFileSync(path, 'utf-8'));
+  } catch (exc) {}
+
+  return null;
 }
 
 function restModules(...args) {
@@ -50,5 +59,5 @@ function generateHtmlPages(inject) {
 }
 
 module.exports = {
-  parseBool, restModules, getEntries, generateHtmlPages,
+  parseBool, getJsonFromFile, restModules, getEntries, generateHtmlPages,
 };

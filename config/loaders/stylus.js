@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Loader = require('../loader');
 
 module.exports = class Stylus extends Loader {
-  constructor(options) {
+  constructor(options = {}) {
     const postcssPlugins = [
       require('autoprefixer'),
       require('postcss-inline-svg')({

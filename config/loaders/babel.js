@@ -1,7 +1,7 @@
 const Loader = require('../loader');
 
 module.exports = class Babel extends Loader {
-  constructor(options) {
+  constructor(options = {}) {
     const defaultOptions = {
       test: /\.js$/,
       exclude: /node_modules/,

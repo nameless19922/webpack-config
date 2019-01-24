@@ -4,7 +4,7 @@ const Loader = require('../loader');
 const { paths } = require('../consts');
 
 module.exports = class Svg extends Loader {
-  constructor(options) {
+  constructor(options = {}) {
     const defaultOptions = {
       test: /\.(svg)$/,
       exclude: [

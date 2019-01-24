@@ -3,7 +3,7 @@ const { stats } = require('../consts');
 const Watcher = require('../watcher');
 
 module.exports = class DevServer extends Loader {
-  constructor(options) {
+  constructor(options = {}) {
     const defaultOptions = {
       compress: true,
       inline: true,
