@@ -27,7 +27,7 @@ module.exports = class Nunjucks extends Loader {
 
   static createNjkOpts(pathfile) {
     const data = getJsonFromFile(pathfile);
-    
+
     let njkOptions = {
       root: path.resolve(paths.app, 'components'),
     };

@@ -13,12 +13,12 @@ function parseBool(value) {
   }
 }
 
-function getJsonFromFile(path) {
+function getJsonFromFile(pathfile) {
   try {
-    return JSON.parse(readFileSync(path, 'utf-8'));
-  } catch (exc) {}
-
-  return null;
+    return JSON.parse(readFileSync(pathfile, 'utf-8'));
+  } catch (e) {
+    return null;
+  }
 }
 
 function restModules(...args) {
