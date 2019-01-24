@@ -12,7 +12,7 @@ module.exports = class Static extends Loader {
           loader: 'file-loader',
           options: {
             context: path.resolve(paths.app, 'resources'),
-            name: '[path][name].[ext]',
+            name: '[path][name].[ext]?[hash]',
           },
         },
       ],
