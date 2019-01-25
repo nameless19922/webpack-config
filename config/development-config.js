@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 const BaseConfig = require('./base-config');
 const DevServer = require('./server/dev-server');
@@ -35,8 +34,6 @@ module.exports = class DevelopmentBase extends BaseConfig {
 
     // styles of source mapping: https://webpack.js.org/configuration/devtool/
     config.devtool = JS_SOURCEMAP || 'cheap-eval-source-map';
-
-    config.plugins.push(new FriendlyErrorsWebpackPlugin());
 
     return config;
   }

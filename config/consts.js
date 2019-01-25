@@ -21,8 +21,8 @@ const stats = {
   colors: true,
   chunks: false,
   modules: false,
-  errors: true,
-  warnings: true,
+  errors: false,
+  warnings: false,
   moduleTrace: true,
   errorDetails: true,
 };

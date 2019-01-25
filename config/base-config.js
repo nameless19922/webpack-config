@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 const { restModules, generateHtmlPages, parseBool } = require('./utils');
 const loaders = require('./loaders');
@@ -64,6 +65,8 @@ module.exports = class BaseConfig {
       }),
 
       new webpack.ProgressPlugin(),
+
+      new FriendlyErrorsWebpackPlugin(),
 
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(this.mode),
