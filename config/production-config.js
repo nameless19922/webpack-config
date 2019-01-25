@@ -1,6 +1,6 @@
 const { readFileSync } = require('fs');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const BaseConfig = require('./base-config');
 
@@ -8,14 +8,10 @@ module.exports = class ProductionBase extends BaseConfig {
   optimization() {
     return {
       minimizer: [
-        new UglifyJsPlugin({
+        new TerserPlugin({
           cache: true,
           parallel: true,
-          uglifyOptions: {
-            output: {
-              comments: false,
-            },
-          },
+          extractComments: true,
         }),
       ],
     };
