@@ -1,8 +1,8 @@
-const { readFileSync } = require('fs');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 const BaseConfig = require('./base-config');
+const { getJsonFromFile } = require('./utils');
 
 module.exports = class ProductionBase extends BaseConfig {
   optimization() {
@@ -19,12 +19,15 @@ module.exports = class ProductionBase extends BaseConfig {
 
   config() {
     const config = super.config();
+    const htmlBeautifyOpts = getJsonFromFile('.jsbeautifyrc');
 
-    config.plugins.push(new HtmlBeautifyPlugin({
-      config: {
-        html: JSON.parse(readFileSync('.jsbeautifyrc')),
-      },
-    }));
+    if (htmlBeautifyOpts !== null) {
+      config.plugins.push(new HtmlBeautifyPlugin({
+        config: {
+          html: htmlBeautifyOpts,
+        },
+      }));
+    }
 
     config.optimization = this.optimization();
 
