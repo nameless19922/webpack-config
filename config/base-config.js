@@ -23,7 +23,7 @@ module.exports = class BaseConfig {
 
   entry() {
     return {
-      app: [`${this.dirs.srcJs}/app.js`],
+      app: [`./${this.dirs.srcJs}/app.js`],
     };
   }
 
