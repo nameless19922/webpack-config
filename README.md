@@ -1,14 +1,18 @@
 [![Build Status](https://travis-ci.org/nameless19922/webpack-config.svg?branch=master)](https://travis-ci.org/nameless19922/webpack-config)
 
+- [ ] Bring the Njk-loader to a separate NPM-module
+- [ ] Simplifying the creation of a new project
+
 # Webpack-Config
 
 ## Usage
 
 ### Basic usage
+Create an app folder with the structure below or copy an example from the "examples" folder.
 
 `./webpack.config.js`
 ```js
-const Config = require('../../config/index');
+const Config = require('../../config');
 
 module.exports = new Config('Webpack-Config').merge();
 ```
@@ -20,7 +24,7 @@ You can also customize configuration and expand other web package configurations
 ```js
 const path = require('path');
 
-const Config = require('../../config/index');
+const Config = require('../../config');
 const { getEntries } = require('../../config/utils');
 
   // env, argv from webpack
