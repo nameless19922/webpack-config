@@ -87,10 +87,6 @@ module.exports = class BaseConfig {
     };
   }
 
-  modules() {
-    return ['node_modules', path.resolve(__dirname, 'loaders-src')];
-  }
-
   config() {
     return {
       context: this.dirs.srcDir,
@@ -103,10 +99,6 @@ module.exports = class BaseConfig {
         alias: this.alias(),
         aliasFields: ['browser'],
         extensions: ['.js', '.styl', '.svg'],
-      },
-
-      resolveLoader: {
-        modules: this.modules(),
       },
 
       entry: this.entry(),

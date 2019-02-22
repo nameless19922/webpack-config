@@ -16,7 +16,7 @@ module.exports = class Nunjucks extends Loader {
           },
         },
         {
-          loader: 'njk-loader',
+          loader: 'njk-html-loader',
           options: Nunjucks.createNjkOpts('./data.json'),
         },
       ],
