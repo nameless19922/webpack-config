@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/nameless19922/webpack-config.svg?branch=master)](https://travis-ci.org/nameless19922/webpack-config)
 
-- [ ] Bring the Njk-loader to a separate NPM-module
+- [x] Bring the Njk-loader to a separate NPM-module
 - [ ] Simplifying the creation of a new project
 
 # Webpack-Config
